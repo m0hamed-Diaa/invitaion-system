@@ -44,7 +44,6 @@ export default function ReminderDialog({
         setTarget,
     ] = useState<
         "all"
-        | "pending"
         | "attending"
         | "declined"
     >("all");
@@ -137,6 +136,7 @@ export default function ReminderDialog({
             toast.success(
                 "تم إنشاء التذكير بنجاح"
             );
+            setLoading(false);
 
             setMessage("");
 
@@ -159,12 +159,9 @@ export default function ReminderDialog({
             );
 
         } finally {
-
             setLoading(false);
-
         }
     }
-
 
     return (
         <>
@@ -207,9 +204,6 @@ export default function ReminderDialog({
 
                                 <SelectItem value="all">
                                     كل المدعوين
-                                </SelectItem>
-                                <SelectItem value="pending">
-                                    بانتظار الرد
                                 </SelectItem>
 
                                 <SelectItem value="attending">

@@ -56,7 +56,6 @@ interface EventFormProps {
 
 export default function EventForm({
     submitText = "حفظ",
-    successMessage = "تم الحفظ بنجاح",
     onSubmit,
     clientIdFromSearchParams
 }: EventFormProps) {
@@ -92,15 +91,18 @@ export default function EventForm({
         try {
             setLoading(true);
 
-            await onSubmit(values);
+            const result = await onSubmit(values);
 
-            toast.success(successMessage);
+            if (result.success) {
+                toast.success(result.message);
+                form.reset();
 
-            form.reset();
-
-            router.push("/admin/events");
+                router.push("/admin/events");
+            } else {
+                toast.success(result.message);
+            }
         } catch {
-            toast.error("حدث خطأ");
+            toast.error("حدث خطأ اثناء انشاء المناسبة");
         } finally {
             setLoading(false);
         }
@@ -155,7 +157,7 @@ export default function EventForm({
 
                         {/* رسالة الدعوة */}
 
-                        < Controller
+                        <Controller
                             control={form.control}
                             name="invitation_message"
                             render={({ field, fieldState }) => (

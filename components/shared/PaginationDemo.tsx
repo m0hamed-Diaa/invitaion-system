@@ -11,7 +11,7 @@ import {
     PaginationPrevious,
 } from "@/components/ui/pagination";
 import { useTransition } from "react";
-import PageLoading from "@/app/admin/loading";
+import PageLoading from "@/app/(admin)/admin/loading";
 
 interface Props {
     totalPages: number;

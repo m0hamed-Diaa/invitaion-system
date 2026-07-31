@@ -49,6 +49,8 @@ export default async function AdminDashboard() {
           events: stats.events,
           guests: stats.guests,
           attending: stats.attending,
+          sending: stats.sent,
+          notSending: stats.notSent
         }}
       />
 
@@ -61,7 +63,6 @@ export default async function AdminDashboard() {
         />
 
       </div>
-
     </div>
   );
 }

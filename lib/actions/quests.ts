@@ -104,7 +104,6 @@ export async function getGuestsByEvent({
             `phone.ilike.%${value}%`,
         ];
 
-        // البحث بالكود إذا كان رقمًا
         if (/^\d{2,}$/.test(value)) {
             filters.push(
                 `guest_code.eq.${Number(value)}`

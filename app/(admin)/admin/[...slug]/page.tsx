@@ -4,7 +4,7 @@ import PageNotFound from "@/PageNotFound/PageNotFound";
 
 
 const error = () => {
-    return <PageNotFound path="/" />;
+    return <PageNotFound path="/admin" />;
 };
 
 export default error;

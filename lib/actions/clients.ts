@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { ClientFormValues } from "@/components/admin/clients/ClientAddForm";
+import { getStoragePath } from "../supabase/getStoragePath";
 
 interface GetClientsProps {
     page?: number;
@@ -115,66 +116,6 @@ export async function updateClientAction(
 }
 
 
-function getStoragePath(
-    value: string
-): string | null {
-
-    // images/file.webp
-    // excel/file.xlsx
-    // reminders/file.webp
-
-    if (
-        !value.startsWith("http://") &&
-        !value.startsWith("https://")
-    ) {
-        return value;
-    }
-
-    try {
-
-        const url = new URL(value);
-
-        const marker =
-            "/storage/v1/object/";
-
-        const index =
-            url.pathname.indexOf(marker);
-
-        if (index === -1) {
-            return null;
-        }
-
-        let path =
-            url.pathname.slice(
-                index + marker.length
-            );
-
-        // public/invitations/images/file.webp
-        path = path.replace(
-            /^public\//,
-            ""
-        );
-
-        // invitations/images/file.webp
-        if (
-            path.startsWith(
-                "invitations/"
-            )
-        ) {
-            path =
-                path.slice(
-                    "invitations/".length
-                );
-        }
-
-        return decodeURIComponent(path);
-
-    } catch {
-
-        return null;
-
-    }
-}
 
 export async function deleteClientAction(
     clientId: string
@@ -182,11 +123,6 @@ export async function deleteClientAction(
     const supabase = await createClient();
 
     try {
-
-        // ========================================
-        // 1. Get client's event
-        // ========================================
-
         const {
             data: event,
             error: eventError,
@@ -202,10 +138,6 @@ export async function deleteClientAction(
             throw eventError;
         }
 
-
-        // ========================================
-        // 2. Get reminder images
-        // ========================================
 
         let reminderImages: string[] = [];
 
@@ -234,11 +166,6 @@ export async function deleteClientAction(
                     ) ?? [];
         }
 
-
-        // ========================================
-        // 3. Collect files
-        // ========================================
-
         const files = [
             event?.invitation_image,
             event?.guests_excel,
@@ -248,22 +175,12 @@ export async function deleteClientAction(
                 Boolean(file)
         );
 
-
-        // ========================================
-        // 4. Convert URLs to Storage paths
-        // ========================================
-
         const paths = files
             .map(getStoragePath)
             .filter(
                 (path): path is string =>
                     Boolean(path)
             );
-
-
-        // ========================================
-        // 5. Delete only this client's files
-        // ========================================
 
         if (paths.length > 0) {
 
@@ -279,11 +196,6 @@ export async function deleteClientAction(
             }
         }
 
-
-        // ========================================
-        // 6. Delete ONLY this client
-        // ========================================
-
         const {
             error: deleteError,
         } = await supabase
@@ -294,12 +206,7 @@ export async function deleteClientAction(
         if (deleteError) {
             throw deleteError;
         }
-
-
-        // ========================================
-        // 7. Refresh pages
-        // ========================================
-
+        
         revalidatePath("/admin/clients");
         revalidatePath("/admin/events");
 

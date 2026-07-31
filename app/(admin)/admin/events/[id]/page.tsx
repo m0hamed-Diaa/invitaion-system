@@ -24,7 +24,8 @@ import { redirect } from "next/navigation";
 import ReminderSection from "@/components/admin/reminders/ReminderSection";
 import GuestTable from "@/components/admin/events/GuestsTable";
 // import AttendanceTable from "@/components/admin/events/AttendanceTable";
-// import ResendButton from "@/components/admin/reminders/ResendEvent";
+import ResendButton from "@/components/admin/reminders/ResendEvent";
+import RefreshPage from "@/components/admin/events/RefreshPage";
 
 interface Props {
     params: Promise<{
@@ -81,6 +82,7 @@ export default async function GuestsPage({
         getGuestStatsByEvent(event.id),
     ]);
 
+
     const [{ sent, failed }] = await Promise.all([
         getInvitationStats(event.id)
     ])
@@ -94,11 +96,10 @@ export default async function GuestsPage({
                     eventId={event.id}
                 />
 
-                {/* {failed !== 0 && (
-                    <ResendButton event_Id={event.id}>
-                        إعادة إرسال غير المرسلة
-                    </ResendButton>
-                )} */}
+                {failed !== 0 && (
+                    <ResendButton event_Id={event.id} />
+                )}
+
                 <Button className={"w-full sm:w-fit"} disabled>
                     تحميل تقرير بالمدعوين
                 </Button>
@@ -108,12 +109,12 @@ export default async function GuestsPage({
                         الذهاب لصفحة العملاء
                     </Button>
                 </Link>
+
+                <RefreshPage />
             </div>
 
             <Card>
-
                 <CardHeader>
-
                     <CardTitle>
                         بيانات العميل
                     </CardTitle>
@@ -254,7 +255,7 @@ export default async function GuestsPage({
 
                                 <p className="text-muted-foreground">
 
-                                    تم الإرسال
+                                    تم الإرسال عبر الوتساب
 
                                 </p>
 
@@ -273,7 +274,7 @@ export default async function GuestsPage({
 
                                 <p className="text-muted-foreground">
 
-                                    لم يتم الإرسال
+                                    لم يتم الإرسال عبر الوتساب
 
                                 </p>
 
@@ -359,10 +360,6 @@ export default async function GuestsPage({
                                 المدعوون
                             </TabsTrigger>
 
-                            {/* <TabsTrigger value="attendances">
-                                الحضور
-                            </TabsTrigger> */}
-
                             <TabsTrigger value="reminders">
                                 التذكيرات
                             </TabsTrigger>
@@ -407,40 +404,6 @@ export default async function GuestsPage({
                             />
 
                         </TabsContent>
-
-                        {/* جدول الحضور */}
-                        {/* <TabsContent
-                            value="attendances"
-                            className="space-y-6 mt-6"
-                        >
-
-                            <div className="flex items-center justify-between">
-                                <div>
-                                    <h2 className="text-xl font-bold">
-                                        الحضور
-                                    </h2>
-
-                                    <p className="text-sm text-muted-foreground">
-                                        إدارة بيانات وحالة الحضور
-                                    </p>
-                                </div>
-                            </div>
-
-                            <DataToolbar
-                                statusAttendFilter
-                                placeholder="الاسم أو الهاتف ..."
-                            />
-
-                            <AttendanceTable
-                                guests={guests}
-                            />
-
-
-                            <PaginationComponent
-                                totalPages={totalPages}
-                            />
-
-                        </TabsContent> */}
 
                         {/* جدول التذكيرات */}
                         <TabsContent

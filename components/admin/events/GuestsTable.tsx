@@ -16,6 +16,10 @@ type Guest = {
     phone: string;
     status: "pending" | "attending" | "declined";
     invitation_sent: boolean;
+    invitation_sent_at: string;
+    attend_confirmation: boolean;
+    confirmed_at: string;
+    method: string;
     scanned_at: string;
 };
 
@@ -40,6 +44,9 @@ export default function GuestTable({
                     <TableHead>الحالة</TableHead>
 
                     <TableHead>الدعوة</TableHead>
+                    <TableHead>تاكيد الدخول </TableHead>
+                    <TableHead>طريقة الدخول</TableHead>
+                    <TableHead>وقت الدخول</TableHead>
 
                     <TableHead>العمليات</TableHead>
 
@@ -85,6 +92,10 @@ export default function GuestTable({
                         <TableCell className="text-center">
                             {guest.invitation_sent ? "تم الإرسال" : "لم ترسل"}
                         </TableCell>
+
+                        <TableCell>{guest.attend_confirmation ? "✔" : "-"}</TableCell>
+                        <TableCell>{guest.method ? guest.method === "qr" ? "QR" : "يدوى" : "-"}</TableCell>
+                        <TableCell>18/8/2016</TableCell>
 
                         {/* العمليات */}
                         <TableCell className="text-right">

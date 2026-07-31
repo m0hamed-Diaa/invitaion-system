@@ -43,29 +43,9 @@ export default async function NewClientPage({
                 </>
             ) : <EventForm
                 submitText="إنشاء المناسبة"
-                successMessage="تم إنشاء المناسبة"
                 clientIdFromSearchParams={client}
                 onSubmit={createEventAction}
             />}
         </div>
     );
 }
-
-
-/**
- * 
- * <EventForm
-    mode="update"
-    defaultValues={{
-        title: event.title,
-    }}
-    submitText="حفظ"
-    successMessage="تم تعديل المناسبة"
-    onSubmit={(data) =>
-        updateEventAction(
-            event.id,
-            data as UpdateEventFormValues
-        )
-    }
-/>
- */

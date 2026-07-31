@@ -25,7 +25,6 @@ export default function ReminderButton({
                 onClick={() =>
                     setOpen(true)
                 }
-                disabled
                 className={"w-full sm:w-fit"}
             >
                 إرسال تذكير للمدعوين

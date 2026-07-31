@@ -3,6 +3,8 @@ import {
     CalendarDays,
     UserRoundCheck,
     UserRound,
+    UserPen,
+    UserX
 } from "lucide-react";
 
 import {
@@ -17,6 +19,8 @@ interface Props {
         events: number;
         guests: number;
         attending: number;
+        sending: number;
+        notSending: number;
     };
 }
 
@@ -46,6 +50,18 @@ export default function DashboardStats({
             title: "إجمالي الحضور",
             value: stats.attending,
             icon: UserRoundCheck,
+            link: ""
+        },
+        {
+            title: "إجمالي رسائل المدعوين المرسلة عبر الوتساب",
+            value: stats.sending,
+            icon: UserPen,
+            link: ""
+        },
+        {
+            title: "إجمالي رسائل المدعوين فى حالة الأرسال عبر الوتساب",
+            value: stats.notSending,
+            icon: UserX,
             link: ""
         },
     ];

@@ -95,36 +95,29 @@ export async function getEventById(id: string) {
 export async function createEventAction(
     values: EventFormValues
 ) {
+    const supabase = await createClient();
 
-    const supabase =
-        await createClient();
-
-    // قراءة Excel
-    const guests =
-        await importGuests(
+    try {
+        const guests = await importGuests(
             values.guests_excel
         );
 
-    // رفع الصورة
-    const imageUrl =
-        await uploadFile(
+        const imageUrl = await uploadFile(
             values.invitation_image,
             "images"
         );
 
-    // رفع ملف Excel
-    const excelUrl =
-        await uploadFile(
+        const excelUrl = await uploadFile(
             values.guests_excel,
             "excel"
         );
 
-    // إنشاء المناسبة
-    const { data: event, error } =
-        await supabase
+        const {
+            data: event,
+            error,
+        } = await supabase
             .from("events")
             .insert({
-
                 client_id:
                     values.client_id,
 
@@ -139,52 +132,165 @@ export async function createEventAction(
 
                 guests_excel:
                     excelUrl,
-
             })
             .select()
             .single();
 
-    if (error)
-        throw error;
+        if (error || !event) {
+            console.error(
+                "Create event error:",
+                error
+            );
 
-    // إنشاء المدعوين
-    await createGuestsAction(
-        event.id,
-        guests
-    );
+            throw new Error(
+                "فشل في إنشاء المناسبة"
+            );
+        }
 
-    revalidatePath("/admin/events");
+        await createGuestsAction(
+            event.id,
+            guests
+        );
 
-    // const response = await fetch(
-    //     process.env.N8N_SEND_INVITATIONS_WEBHOOK!,
-    //     {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "x-api-key":
-    //                 process.env.N8N_WEBHOOK_SECRET!,
-    //         },
-    //         body: JSON.stringify({
-    //             event_id: event.id,
-    //         }),
-    //     }
-    // );
+        revalidatePath(
+            "/admin/events"
+        );
 
-    // if (!response.ok) {
-    //     throw new Error("خطا فى ارسال المناسبة ل n8n");
-    // }
+        try {
+            const webhookUrl =
+                process.env
+                    .N8N_SEND_INVITATIONS_WEBHOOK;
 
-    return {
+            const webhookSecret =
+                process.env
+                    .N8N_WEBHOOK_SECRET;
 
-        success: true,
+            if (
+                !webhookUrl ||
+                !webhookSecret
+            ) {
+                console.error(
+                    "Missing n8n environment variables"
+                );
 
-        message:
-            "تم إنشاء المناسبة",
+                return {
+                    success: true,
 
-        data: event,
+                    eventCreated: true,
 
-    };
+                    n8nSuccess: false,
 
+                    message:
+                        "تم إنشاء المناسبة بنجاح، ولكن لم يتم بدء إرسال الدعوات",
+
+                    data: event,
+                };
+            }
+
+            const response =
+                await fetch(
+                    webhookUrl,
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json",
+
+                            "x-api-key":
+                                webhookSecret,
+                        },
+
+                        body: JSON.stringify(
+                            {
+                                event_id:
+                                    event.id,
+                            }
+                        ),
+
+                        cache:
+                            "no-store",
+                    }
+                );
+
+            if (
+                !response.ok
+            ) {
+                const errorText =
+                    await response.text();
+
+                console.error(
+                    "n8n Error:",
+                    {
+                        status:
+                            response.status,
+
+                        statusText:
+                            response.statusText,
+
+                        body:
+                            errorText,
+                    }
+                );
+
+                return {
+                    success: true,
+
+                    eventCreated: true,
+
+                    n8nSuccess: false,
+
+                    message:
+                        "تم إنشاء المناسبة بنجاح، ولكن لم يتم بدء إرسال الدعوات",
+
+                    data: event,
+                };
+            }
+
+            return {
+                success: true,
+
+                eventCreated: true,
+
+                n8nSuccess: true,
+
+                message:
+                    "تم إنشاء المناسبة وبدأ إرسال الدعوات",
+
+                data: event,
+            };
+
+        } catch (n8nError) {
+            console.error(
+                "n8n connection error:",
+                n8nError
+            );
+
+            return {
+                success: true,
+
+                eventCreated: true,
+
+                n8nSuccess: false,
+
+                message:
+                    "تم إنشاء المناسبة بنجاح، ولكن لم يتم بدء إرسال الدعوات",
+
+                data: event,
+            };
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Create event error:",
+            error
+        );
+
+        throw new Error(
+            "حدث خطأ أثناء إنشاء المناسبة"
+        );
+    }
 }
 
 export async function updateEventAction(
@@ -283,44 +389,85 @@ export async function getInvitationStats(
         failed: failed ?? 0,
     };
 }
+
+
 export async function resendInvitationsAction(
     eventId: string
 ) {
     try {
+        const webhookUrl =
+            process.env.N8N_SEND_INVITATIONS_WEBHOOK;
+
+        const webhookSecret =
+            process.env.N8N_WEBHOOK_SECRET;
+
+        if (!webhookUrl || !webhookSecret) {
+            console.error(
+                "Missing n8n environment variables"
+            );
+
+            return {
+                success: false,
+                message:
+                    "إعدادات نظام الإرسال غير مكتملة",
+            };
+        }
+
         const response = await fetch(
-            process.env.N8N_SEND_INVITATIONS_WEBHOOK!,
+            webhookUrl,
             {
                 method: "POST",
+
                 headers: {
-                    "Content-Type": "application/json",
+                    "Content-Type":
+                        "application/json",
+
                     "x-api-key":
-                        process.env.N8N_WEBHOOK_SECRET!,
+                        webhookSecret,
                 },
+
                 body: JSON.stringify({
                     event_id: eventId,
                 }),
+
                 cache: "no-store",
             }
         );
 
         if (!response.ok) {
+            const errorText =
+                await response.text();
+
+            console.error(
+                "n8n Error:",
+                response.status,
+                errorText
+            );
+
             return {
                 success: false,
-                message: "فشل في إعادة تشغيل إرسال الدعوات",
+                message:
+                    "فشل في إعادة إرسال الدعوات",
             };
         }
 
         return {
             success: true,
-            message: "تم بدء إعادة إرسال الدعوات",
+            message:
+                "تم بدء إعادة إرسال الدعوات غير المرسلة",
         };
 
     } catch (error) {
-        console.error(error);
+
+        console.error(
+            "Resend invitations error:",
+            error
+        );
 
         return {
             success: false,
-            message: "حدث خطأ أثناء الاتصال بنظام الإرسال",
+            message:
+                "حدث خطأ أثناء الاتصال بنظام الإرسال",
         };
     }
 }

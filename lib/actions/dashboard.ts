@@ -10,6 +10,8 @@ export async function getDashboardStats() {
         attendingResult,
         pendingResult,
         declinedResult,
+        sendResult,
+        noSendResult
     ] = await Promise.all([
         supabase
             .from("clients")
@@ -55,6 +57,21 @@ export async function getDashboardStats() {
                 head: true,
             })
             .eq("status", "declined"),
+
+        supabase
+            .from("guests")
+            .select("id", {
+                count: "exact",
+                head: true,
+            })
+            .eq("invitation_sent", true),
+        supabase
+            .from("guests")
+            .select("id", {
+                count: "exact",
+                head: true,
+            })
+            .eq("invitation_sent", false),
     ]);
 
     if (clientsResult.error) {
@@ -80,6 +97,12 @@ export async function getDashboardStats() {
     if (declinedResult.error) {
         throw declinedResult.error;
     }
+    if (sendResult.error) {
+        throw sendResult.error;
+    }
+    if (noSendResult.error) {
+        throw noSendResult.error;
+    }
 
     return {
         clients: clientsResult.count ?? 0,
@@ -93,5 +116,9 @@ export async function getDashboardStats() {
         pending: pendingResult.count ?? 0,
 
         declined: declinedResult.count ?? 0,
+
+        sent: sendResult.count ?? 0,
+
+        notSent: noSendResult.count ?? 0,
     };
 }

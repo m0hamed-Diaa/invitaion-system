@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/select";
 import { Search } from "lucide-react";
 import { useTableFilters } from "@/hooks/useTableFilters";
-import PageLoading from "@/app/admin/loading";
+import PageLoading from "@/app/(admin)/admin/loading";
 
 interface Props {
     placeholder?: string;
