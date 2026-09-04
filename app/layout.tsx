@@ -14,27 +14,24 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 export const metadata: Metadata = {
-  title: "انفى Pro | نظام دعوات إلكترونية احترافي",
-  description: "أطلق دعواتك الإلكترونية بكل احترافية مع انفى Pro",
+  title: "انفى | نظام دعوات إلكترونية احترافي",
+  description: "أطلق دعواتك الإلكترونية بكل احترافية مع انفى",
   keywords: "دعوات الكترونية, تصميم دعوات, مناسبات, ادارة فعاليات",
 
-  // ✅ للتحقق من ملكية الموقع في جوجل (اختياري)
   verification: {
     google: "your-google-verification-code",
   },
 
-  // ✅ هنا التحقق من ملكية الموقع في فيسبوك (Domain Verification)
   other: {
     'facebook-domain-verification': 'your-facebook-domain-verification-code',
-    'fb:app_id': 'your-facebook-app-id',      // ✅ عشان تربط التطبيق بميتا
-    'fb:admins': 'your-facebook-admin-id',    // ✅ عشان تحدد الأدمن
+    'fb:app_id': 'your-facebook-app-id',
+    'fb:admins': 'your-facebook-admin-id',  
   },
   icons: {
     icon: "/images/logo.png"
   },
-  // ✅ عشان شكل الرابط لما يتشارك (Open Graph)
   openGraph: {
-    title: "انفى Pro - نظام دعوات إلكترونية احترافي",
+    title: "انفى - نظام دعوات إلكترونية احترافي",
     description: "أطلق دعواتك الإلكترونية بكل احترافية",
     type: "website",
     url: "https://your-domain.com",
