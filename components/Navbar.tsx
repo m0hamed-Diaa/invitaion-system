@@ -40,7 +40,6 @@ export function Navbar() {
         >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-20">
-                    {/* Logo */}
                     <Link href="/" className="flex items-center gap-2 group">
                         <div className="p-2 rounded-xl bg-linear-to-br from-primary/20 to-secondary/20 group-hover:scale-105 transition-transform">
                             <Sparkles className="h-6 w-6 text-primary" />
@@ -54,8 +53,6 @@ export function Navbar() {
                             </span>
                         </div>
                     </Link>
-
-                    {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center gap-1">
                         {navLinks.map((link) => {
                             const isActive = pathname === link.href;
@@ -78,8 +75,6 @@ export function Navbar() {
                             );
                         })}
                     </div>
-
-                    {/* WhatsApp Button */}
                     <div className="hidden md:flex items-center gap-4">
                         <a
                             href="https://wa.me/96551662001?text=السلام+عليكم+ابغى+استفسر+عن+نظام+الدعوات+الإلكترونية"
@@ -95,8 +90,6 @@ export function Navbar() {
                             </Button>
                         </a>
                     </div>
-
-                    {/* Mobile Navigation */}
                     <Sheet open={isOpen} onOpenChange={setIsOpen}>
                         <SheetTrigger className="md:hidden">
                             <Menu className="h-6 w-6" />
