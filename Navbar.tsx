@@ -138,7 +138,7 @@ export function Footer() {
                 <Separator className="my-8 bg-gray-800" />
 
                 <div className="flex flex-wrap justify-between items-center text-sm text-gray-400">
-                    <p>© {new Date().getFullYear()} انفى Pro. جميع الحقوق محفوظة</p>
+                    <p>© {new Date().getFullYear()} انفى. جميع الحقوق محفوظة</p>
                     <div className="flex gap-6">
                         <Link href="/privacy">سياسة الخصوصية</Link>
                         <Link href="/terms">الشروط والأحكام</Link>
