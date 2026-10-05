@@ -84,7 +84,6 @@ export function Footer() {
                             ))}
                         </ul>
                     </div>
-
                     <div>
                         <h3 className="font-semibold text-lg mb-4">الشركة</h3>
                         <ul className="space-y-2">
@@ -97,7 +96,6 @@ export function Footer() {
                             ))}
                         </ul>
                     </div>
-
                     <div>
                         <h3 className="font-semibold text-lg mb-4">القانونية</h3>
                         <ul className="space-y-2">
@@ -111,11 +109,11 @@ export function Footer() {
                         </ul>
                     </div>
                 </div>
-
                 <Separator className="my-8 bg-gray-800" />
-
                 <div className="flex flex-wrap justify-between items-center text-sm text-gray-400">
+
                     <p>© {new Date().getFullYear()} انفى . جميع الحقوق محفوظة</p>
+                    <p>انفى جميع الحقوق محفوظة © {new Date().getFullYear()}</p>
                     <div className="flex gap-6">
                         <Link href="/privacy">سياسة الخصوصية</Link>
                         <Link href="/terms">الشروط والأحكام</Link>
