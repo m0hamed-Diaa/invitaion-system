@@ -326,7 +326,12 @@ export default function ScanQRClient({
                     {
                         fps: 10,
 
-                        // aspectRatio: 1,
+                        qrbox: {
+                            width: 350,
+                            height: 350,
+                        },
+
+                        aspectRatio: 1,
                     },
 
                     async (
