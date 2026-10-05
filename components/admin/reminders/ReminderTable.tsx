@@ -25,6 +25,7 @@ import {
 } from "@/lib/actions/reminders";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import Image from "next/image";
+import { formatTimeAgo } from "@/lib/utils/TimeFormat";
 
 interface Reminder {
     id: string;
@@ -127,7 +128,6 @@ function ReminderDeliveryStats({
     failed: number;
     pending: number;
 }) {
-    // كل المستهدفين تم إرسال التذكير لهم
     if (sent >= total) {
         return (
             <span className="font-medium text-green-600">
@@ -147,7 +147,7 @@ function ReminderDeliveryStats({
 
             {failed > 0 && (
                 <span className="text-red-600">
-                    {failed.toLocaleString("ar-EG")} 
+                    {failed.toLocaleString("ar-EG")}
                 </span>
             )}
 
@@ -250,14 +250,10 @@ export default function ReminderTable({
         }
     }
 
-
     return (
         <>
-
             <Table className="w-full">
-
                 <TableHeader className="bg-muted/50">
-
                     <TableRow>
 
                         <TableHead className="p-4 text-right whitespace-nowrap">
@@ -315,8 +311,6 @@ export default function ReminderTable({
                                     className="border-t"
                                 >
 
-                                    {/* Target */}
-
                                     <TableCell className="p-4">
 
                                         <Badge variant="secondary">
@@ -329,8 +323,6 @@ export default function ReminderTable({
 
                                     </TableCell>
 
-                                    {/* Message */}
-
                                     <TableCell className="p-4 max-w-sm">
 
                                         <p className="truncate" title={reminder.message}>
@@ -341,8 +333,6 @@ export default function ReminderTable({
 
                                     </TableCell>
 
-                                    {/* Content Type */}
-
                                     <TableCell className="p-4 whitespace-nowrap">
 
                                         {reminder.image
@@ -350,7 +340,6 @@ export default function ReminderTable({
                                             : "نص فقط"}
 
                                     </TableCell>
-                                    {/* Image */}
                                     <TableCell className="p-4 whitespace-nowrap">
                                         {reminder.image
                                             ? <>
@@ -366,8 +355,6 @@ export default function ReminderTable({
                                             : "-"}
                                     </TableCell>
 
-                                    {/* Status */}
-
                                     <TableCell className="p-4">
 
                                         <ReminderStatus
@@ -377,47 +364,29 @@ export default function ReminderTable({
                                         />
 
                                     </TableCell>
-
-                                    {/* Sent Count */}
-
                                     <TableCell className="p-4">
-
-                                        {/* <span className="font-medium">
-                                            {reminder.sent_count.toLocaleString(
-                                                "ar-EG"
-                                            )}
-                                        </span> */}
-                                        <TableCell className="p-4">
-                                            <ReminderDeliveryStats
-                                                total={
-                                                    reminder.totalTargeted
-                                                }
-                                                sent={
-                                                    reminder.sentCount
-                                                }
-                                                failed={
-                                                    reminder.failedCount
-                                                }
-                                                pending={
-                                                    reminder.pendingCount
-                                                }
-                                            />
-                                        </TableCell>
+                                        <ReminderDeliveryStats
+                                            total={
+                                                reminder.totalTargeted
+                                            }
+                                            sent={
+                                                reminder.sentCount
+                                            }
+                                            failed={
+                                                reminder.failedCount
+                                            }
+                                            pending={
+                                                reminder.pendingCount
+                                            }
+                                        />
                                     </TableCell>
 
-                                    {/* Date */}
 
                                     <TableCell className="p-4 text-sm text-muted-foreground whitespace-nowrap">
-
-                                        {new Date(
+                                        {formatTimeAgo(
                                             reminder.created_at
-                                        ).toLocaleDateString(
-                                            "ar-EG"
                                         )}
-
                                     </TableCell>
-
-                                    {/* Actions */}
 
                                     <TableCell className="p-4">
 
@@ -430,9 +399,6 @@ export default function ReminderTable({
                                             <DropdownMenuContent
                                                 align="end"
                                             >
-
-                                                {/* Retry */}
-
                                                 {canRetry && (
                                                     <DropdownMenuItem
                                                         className="cursor-pointer"
@@ -453,8 +419,6 @@ export default function ReminderTable({
 
                                                     </DropdownMenuItem>
                                                 )}
-
-                                                {/* Delete */}
 
                                                 {canDelete && (
                                                     <DropdownMenuItem
@@ -491,10 +455,6 @@ export default function ReminderTable({
                 </TableBody>
 
             </Table>
-
-
-            {/* Delete Dialog */}
-
             <AppDialog
                 open={deleteOpen}
                 onOpenChange={setDeleteOpen}
@@ -508,14 +468,11 @@ export default function ReminderTable({
                 confirmVariant="destructive"
                 onConfirm={handleDelete}
             />
-
-            {/* Retry Dialog */}
-
             <AppDialog
                 open={retryOpen}
                 onOpenChange={setRetryOpen}
                 title="إعادة إرسال التذكير"
-                description="حدثت مشكلة أثناء إرسال هذا التذكير. هل تريد إعادة محاولة إرساله؟"
+                description="حدثت مشكلة أثناء إرسال هذا التذكير. هل تريد إعادة محاولة إرساله？"
                 confirmText={
                     loading
                         ? "جاري إعادة الإرسال..."

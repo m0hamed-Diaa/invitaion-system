@@ -31,6 +31,7 @@ interface Props {
     }>;
 }
 
+
 export default async function ClientsPage({
     searchParams,
 }: Props) {
@@ -59,11 +60,11 @@ export default async function ClientsPage({
 
                 <div>
                     <h1 className="text-3xl font-bold">
-                        العملاء
+                        المناسبات
                     </h1>
 
                     <p className="text-muted-foreground mt-1">
-                        دير شغل عملاء الفرح بتوعك.
+                        دير المناسبات الخاصة بعملاء الفرح بتوعك.
                     </p>
                 </div>
 
@@ -113,7 +114,7 @@ export default async function ClientsPage({
                                 </TableHead>
 
                                 <TableHead className="text-center">
-                                    العمليات
+                                    البيانات
                                 </TableHead>
                             </TableRow>
                         </TableHeader>

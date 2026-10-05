@@ -10,15 +10,13 @@ import { InvitationCard } from "./InvitationCard";
 export function HeroSection() {
     return (
         <section className="relative pt-32 pb-20 overflow-hidden bg-linear-to-br from-primary/5 via-transparent to-secondary/5">
-            {/* Background Pattern */}
             <div className="absolute inset-0 opacity-5">
                 <div className="absolute top-20 left-10 w-72 h-72 bg-primary rounded-full blur-3xl" />
                 <div className="absolute bottom-20 right-10 w-72 h-72 bg-secondary rounded-full blur-3xl" />
             </div>
-
+            {/*  */}
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
-                    {/* Left Content */}
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -31,7 +29,7 @@ export function HeroSection() {
                         </Badge>
 
                         <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-                            <span className="bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent">
+                            <span className="bg-linear-to-r from-primary to-secondary bg-clip-text">
                                 دعواتك الإلكترونية
                             </span>
                             <br />
@@ -39,12 +37,11 @@ export function HeroSection() {
                         </h1>
 
                         <p className="text-xl text-gray-600 leading-relaxed max-w-lg">
-                            وَلّع مناسباتك بدعوات إلكترونية مبهرة. نظام متكامل لإدارة الدعوات
+                            دير مناسباتك بدعوات إلكترونية مبهرة. نظام متكامل لإدارة الدعوات
                             <span className="text-primary font-semibold"> للأدمن فقط</span>،
                             والمستخدمين يتواصلون معك بسهولة عبر واتساب.
                         </p>
 
-                        {/* Stats */}
                         <div className="flex items-center gap-8 pt-4 flex-wrap">
                             <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
                                 <Users className="w-5 h-5 text-primary" />
@@ -64,10 +61,9 @@ export function HeroSection() {
                             </div>
                         </div>
 
-                        {/* CTA Buttons */}
                         <div className="flex flex-wrap gap-4">
                             <a
-                                href="https://wa.me/96551662001?text=السلام+عليكم+ابغى+استفسر+عن+نظام+الدعوات+الإلكترونية"
+                                href="https://wa.me/96597995301?text=السلام+عليكم+ابغى+استفسر+عن+نظام+الدعوات+الإلكترونية"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
@@ -82,7 +78,6 @@ export function HeroSection() {
                             </Link>
                         </div>
 
-                        {/* Features Tags */}
                         <div className="flex flex-wrap gap-3 pt-2">
                             <div className="flex items-center gap-1 text-sm text-gray-600 bg-gray-50 px-3 py-1.5 rounded-full">
                                 <CheckCircle2 className="w-4 h-4 text-green-500" />
@@ -99,7 +94,6 @@ export function HeroSection() {
                         </div>
                     </motion.div>
 
-                    {/* Right Content */}
                     <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}

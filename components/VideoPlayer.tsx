@@ -206,7 +206,6 @@ export function VideoPlayer() {
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}
             >
-                {/* الفيديو */}
                 <video
                     ref={videoRef}
                     className="w-full h-150"
@@ -221,17 +220,14 @@ export function VideoPlayer() {
                     <source src="/videos/inviVideo.mp4" type="video/mp4" />
                 </video>
 
-                {/* مؤشر التحميل */}
                 {isLoading && (
                     <div className="absolute inset-0 flex items-center justify-center bg-black/50 z-20">
                         <Loader2 className="w-12 h-12 text-white animate-spin" />
                     </div>
                 )}
 
-                {/* Overlay شفاف */}
                 <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent pointer-events-none z-10" />
 
-                {/* زر التشغيل في المنتصف */}
                 <button
                     onClick={togglePlay}
                     className={cn(
@@ -249,13 +245,11 @@ export function VideoPlayer() {
                     </div>
                 </button>
 
-                {/* أزرار التحكم السفلية */}
                 <div className={cn(
                     "absolute bottom-0 left-0 right-0 p-4 transition-opacity duration-300 z-20",
                     isHovering ? "opacity-100" : "opacity-0"
                 )}>
                     <div className="space-y-3">
-                        {/* ✅ شريط التقدم - اتجاه عربي صحيح */}
                         <div className="flex items-center gap-3">
                             <span className="text-white text-xs font-mono min-w-10 drop-shadow-lg">
                                 {formatTime(currentTime)}
@@ -281,10 +275,8 @@ export function VideoPlayer() {
                             </span>
                         </div>
 
-                        {/* أزرار التحكم */}
                         <div className="flex items-center justify-between">
                             <div className="flex items-center gap-1">
-                                {/* رجوع 5 ثواني */}
                                 <Button
                                     variant="ghost"
                                     size="icon"
@@ -295,7 +287,6 @@ export function VideoPlayer() {
                                     <SkipForward className="w-5 h-5" />
                                 </Button>
 
-                                {/* تشغيل/إيقاف */}
                                 <Button
                                     variant="ghost"
                                     size="icon"
@@ -306,7 +297,6 @@ export function VideoPlayer() {
                                     {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
                                 </Button>
 
-                                {/* تقدم 5 ثواني */}
                                 <Button
                                     variant="ghost"
                                     size="icon"
@@ -317,7 +307,6 @@ export function VideoPlayer() {
                                     <SkipBack className="w-5 h-5" />
                                 </Button>
 
-                                {/* كتم الصوت */}
                                 <Button
                                     variant="ghost"
                                     size="icon"
@@ -331,7 +320,6 @@ export function VideoPlayer() {
                                     }
                                 </Button>
 
-                                {/* ✅ شريط مستوى الصوت - اتجاه عربي صحيح */}
                                 <div className="w-24 hidden sm:block">
                                     <Slider
                                         value={[isMuted ? 1 : 1 - volume]}
@@ -350,7 +338,6 @@ export function VideoPlayer() {
                                     Space ⏯ | ← → 5s | ↑ ↓ صوت | F ⛶
                                 </span>
 
-                                {/* تكبير/تصغير */}
                                 <Button
                                     variant="ghost"
                                     size="icon"

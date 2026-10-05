@@ -68,7 +68,6 @@ export default function PaginationComponent({
                 : "mt-8"
         }>
             <PaginationContent className="overflow-x-auto w-full">
-                {/* Previous */}
                 <PaginationItem>
                     <PaginationPrevious
                         onClick={() =>
@@ -83,8 +82,6 @@ export default function PaginationComponent({
                     />
                 </PaginationItem>
 
-                {/* Pages */}
-
                 {pages.map((page) => (
                     <PaginationItem key={page}>
                         <PaginationLink
@@ -96,8 +93,6 @@ export default function PaginationComponent({
                         </PaginationLink>
                     </PaginationItem>
                 ))}
-
-                {/* Next */}
 
                 <PaginationItem>
                     <PaginationNext
@@ -117,158 +112,3 @@ export default function PaginationComponent({
         </Pagination>
     );
 }
-
-
-
-// "use client";
-
-// import {
-//     useRouter,
-//     useSearchParams,
-// } from "next/navigation";
-
-// import {
-//     useTransition,
-// } from "react";
-
-// import {
-//     Pagination,
-//     PaginationContent,
-//     PaginationItem,
-//     PaginationLink,
-//     PaginationNext,
-//     PaginationPrevious,
-// } from "@/components/ui/pagination";
-
-// interface Props {
-//     totalPages: number;
-// }
-
-// export default function PaginationComponent({
-//     totalPages,
-// }: Props) {
-
-//     const router = useRouter();
-
-//     const params =
-//         useSearchParams();
-
-//     const [
-//         isPending,
-//         startTransition,
-//     ] = useTransition();
-
-//     const currentPage =
-//         Number(
-//             params.get("page") ?? "1"
-//         );
-
-//     function changePage(page: number) {
-
-//         if (
-//             page < 1 ||
-//             page > totalPages ||
-//             page === currentPage ||
-//             isPending
-//         ) {
-//             return;
-//         }
-
-//         const newParams =
-//             new URLSearchParams(
-//                 params.toString()
-//             );
-
-//         newParams.set(
-//             "page",
-//             page.toString()
-//         );
-
-//         startTransition(() => {
-//             router.replace(
-//                 `?${newParams.toString()}`
-//             );
-//         });
-//     }
-
-//     if (totalPages <= 1) {
-//         return null;
-//     }
-
-//     return (
-//         <Pagination
-//             className={
-//                 isPending
-//                     ? "pointer-events-none opacity-50"
-//                     : "mt-8"
-//             }
-//         >
-//             <PaginationContent>
-
-//                 <PaginationItem>
-
-//                     <PaginationPrevious
-//                         onClick={() =>
-//                             changePage(
-//                                 currentPage - 1
-//                             )
-//                         }
-//                         className={
-//                             currentPage === 1
-//                                 ? "pointer-events-none opacity-50"
-//                                 : "cursor-pointer"
-//                         }
-//                     />
-
-//                 </PaginationItem>
-
-//                 {Array.from(
-//                     {
-//                         length: totalPages,
-//                     },
-//                     (_, index) =>
-//                         index + 1
-//                 ).map((page) => (
-
-//                     <PaginationItem
-//                         key={page}
-//                     >
-
-//                         <PaginationLink
-//                             isActive={
-//                                 page === currentPage
-//                             }
-//                             onClick={() =>
-//                                 changePage(page)
-//                             }
-//                             className="cursor-pointer"
-//                         >
-//                             {page}
-//                         </PaginationLink>
-
-//                     </PaginationItem>
-
-//                 ))}
-
-//                 <PaginationItem>
-
-//                     <PaginationNext
-//                         onClick={() =>
-//                             changePage(
-//                                 currentPage + 1
-//                             )
-//                         }
-//                         className={
-//                             currentPage ===
-//                                 totalPages
-//                                 ? "pointer-events-none opacity-50"
-//                                 : "cursor-pointer"
-//                         }
-//                     />
-
-//                 </PaginationItem>
-
-//             </PaginationContent>
-//         </Pagination>
-//     );
-// }

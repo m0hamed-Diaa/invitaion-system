@@ -134,7 +134,6 @@ export default function EventForm({
                 >
                     <FieldGroup>
 
-                        {/* عنوان المناسبة */}
                         <Controller
                             control={form.control}
                             name="title"
@@ -154,8 +153,6 @@ export default function EventForm({
                                 </Field>
                             )}
                         />
-
-                        {/* رسالة الدعوة */}
 
                         <Controller
                             control={form.control}
@@ -178,8 +175,6 @@ export default function EventForm({
                                 </Field>
                             )}
                         />
-                        {/* صورة الدعوة */}
-
 
                         <Controller
                             control={form.control}
@@ -204,8 +199,6 @@ export default function EventForm({
                                 </Field>
                             )}
                         />
-
-                        {/* ملف المدعوين */}
 
                         <Controller
                             control={form.control}

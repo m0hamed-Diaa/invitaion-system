@@ -55,8 +55,7 @@ export default function AppSidebar() {
 
             router.replace("/login");
             router.refresh();
-        } catch (error) {
-            console.error(error);
+        } catch {
             toast.error("فشل تسجيل الخروج");
         }
     }
@@ -107,7 +106,7 @@ export default function AppSidebar() {
                             </DropdownMenuContent>
                         </DropdownMenu>
 
-                    </> : <> صفحة الداشبورد</>}
+                    </> : <>صفحة الداشبورد</>}
                 </SidebarHeader>
 
                 <SidebarContent>

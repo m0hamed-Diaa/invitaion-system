@@ -117,6 +117,119 @@ export async function updateClientAction(
 
 
 
+// export async function deleteClientAction(
+//     clientId: string
+// ) {
+//     const supabase = await createClient();
+
+//     try {
+//         const {
+//             data: event,
+//             error: eventError,
+//         } = await supabase
+//             .from("events")
+//             .select(
+//                 "id, invitation_image, guests_excel"
+//             )
+//             .eq("client_id", clientId)
+//             .maybeSingle();
+
+//         if (eventError) {
+//             throw eventError;
+//         }
+
+
+//         let reminderImages: string[] = [];
+
+//         if (event) {
+
+//             const {
+//                 data: reminders,
+//                 error: remindersError,
+//             } = await supabase
+//                 .from("reminders")
+//                 .select("image")
+//                 .eq("event_id", event.id)
+//                 .not("image", "is", null);
+
+//             if (remindersError) {
+//                 throw remindersError;
+//             }
+
+//             reminderImages =
+//                 reminders
+//                     ?.map(
+//                         reminder => reminder.image
+//                     )
+//                     .filter(
+//                         Boolean
+//                     ) ?? [];
+//         }
+
+//         const files = [
+//             event?.invitation_image,
+//             event?.guests_excel,
+//             ...reminderImages,
+//         ].filter(
+//             (file): file is string =>
+//                 Boolean(file)
+//         );
+
+//         const paths = files
+//             .map(getStoragePath)
+//             .filter(
+//                 (path): path is string =>
+//                     Boolean(path)
+//             );
+
+//         if (paths.length > 0) {
+
+//             const {
+//                 error: storageError,
+//             } = await supabase
+//                 .storage
+//                 .from("invitations")
+//                 .remove(paths);
+
+//             if (storageError) {
+//                 throw storageError;
+//             }
+//         }
+
+//         const {
+//             error: deleteError,
+//         } = await supabase
+//             .from("clients")
+//             .delete()
+//             .eq("id", clientId);
+
+//         if (deleteError) {
+//             throw deleteError;
+//         }
+
+//         revalidatePath("/admin/clients");
+//         revalidatePath("/admin/events");
+
+
+//         return {
+//             success: true,
+//             message:
+//                 "تم حذف العميل وجميع البيانات المرتبطة به بنجاح",
+//         };
+
+//     } catch (error) {
+
+//         return {
+//             success: false,
+//             message:
+//                 error instanceof Error
+//                     ? error.message
+//                     : "حدث خطأ أثناء حذف العميل",
+//         };
+//     }
+// }
+
+
 export async function deleteClientAction(
     clientId: string
 ) {
@@ -138,11 +251,9 @@ export async function deleteClientAction(
             throw eventError;
         }
 
-
         let reminderImages: string[] = [];
 
         if (event) {
-
             const {
                 data: reminders,
                 error: remindersError,
@@ -159,10 +270,44 @@ export async function deleteClientAction(
             reminderImages =
                 reminders
                     ?.map(
-                        reminder => reminder.image
+                        (reminder) =>
+                            reminder.image
                     )
                     .filter(
-                        Boolean
+                        (
+                            image
+                        ): image is string =>
+                            Boolean(image)
+                    ) ?? [];
+        }
+
+        let qrCodes: string[] = [];
+
+        if (event) {
+            const {
+                data: guests,
+                error: guestsError,
+            } = await supabase
+                .from("guests")
+                .select("qr_code")
+                .eq("event_id", event.id)
+                .not("qr_code", "is", null);
+
+            if (guestsError) {
+                throw guestsError;
+            }
+
+            qrCodes =
+                guests
+                    ?.map(
+                        (guest) =>
+                            guest.qr_code
+                    )
+                    .filter(
+                        (
+                            qr
+                        ): qr is string =>
+                            Boolean(qr)
                     ) ?? [];
         }
 
@@ -170,29 +315,58 @@ export async function deleteClientAction(
             event?.invitation_image,
             event?.guests_excel,
             ...reminderImages,
+            ...qrCodes,
         ].filter(
             (file): file is string =>
                 Boolean(file)
         );
 
-        const paths = files
-            .map(getStoragePath)
-            .filter(
-                (path): path is string =>
-                    Boolean(path)
-            );
+        // ==========================================
+        // 5. Convert URLs → Storage Paths
+        // ==========================================
+
+        const paths = Array.from(
+            new Set(
+                files
+                    .map(getStoragePath)
+                    .filter(
+                        (
+                            path
+                        ): path is string =>
+                            Boolean(path)
+                    )
+            )
+        );
+
+        console.log(
+            "Files to delete:",
+            paths
+        );
 
         if (paths.length > 0) {
 
-            const {
-                error: storageError,
-            } = await supabase
-                .storage
-                .from("invitations")
-                .remove(paths);
+            for (
+                let i = 0;
+                i < paths.length;
+                i += 100
+            ) {
+                const batch =
+                    paths.slice(
+                        i,
+                        i + 100
+                    );
 
-            if (storageError) {
-                throw storageError;
+                const {
+                    error: storageError,
+                } =
+                    await supabase
+                        .storage
+                        .from("invitations")
+                        .remove(batch);
+
+                if (storageError) {
+                    throw storageError;
+                }
             }
         }
 
@@ -206,19 +380,22 @@ export async function deleteClientAction(
         if (deleteError) {
             throw deleteError;
         }
-        
-        revalidatePath("/admin/clients");
-        revalidatePath("/admin/events");
 
+        revalidatePath(
+            "/admin/clients"
+        );
+
+        revalidatePath(
+            "/admin/events"
+        );
 
         return {
             success: true,
             message:
-                "تم حذف العميل وجميع البيانات المرتبطة به بنجاح",
+                "تم حذف العميل وجميع بياناته وصور QR بنجاح",
         };
 
     } catch (error) {
-
         console.error(
             "Delete Client Error:",
             error

@@ -2,7 +2,6 @@
 
 import { createClient } from "./server";
 
-
 export async function uploadFile(
     file: File,
     folder: "images" | "excel" | "reminders"
@@ -38,7 +37,6 @@ export async function uploadFile(
 }
 
 export async function deleteFile(url: string) {
-
     const supabase =
         await createClient();
 

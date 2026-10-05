@@ -12,7 +12,8 @@ const navLinks = [
     { href: "/", label: "الرئيسية" },
     { href: "/about", label: "عن الخدمة" },
     { href: "/contact", label: "تواصل" },
-    { href: "/privacy", label: "سياسة الخصوصية" },
+    { href: "/privacy-policy", label: "سياسة الخصوصية" },
+    { href: "/data-deletion", label: "سياسة حذف البيانات" },   
     { href: "/terms", label: "الشروط والأحكام" },
 ];
 
@@ -46,7 +47,7 @@ export function Navbar() {
                             <Sparkles className="h-6 w-6 text-primary" />
                         </div>
                         <div>
-                            <span className="font-bold text-2xl bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent">
+                            <span className="font-bold text-2xl bg-linear-to-r from-primary to-secondary bg-clip-text">
                                 انفى
                             </span>
                             <span className="block text-[10px] text-gray-400 font-medium tracking-wider">
@@ -82,7 +83,7 @@ export function Navbar() {
                     {/* WhatsApp Button */}
                     <div className="hidden md:flex items-center gap-4">
                         <a
-                            href="https://wa.me/96551662001?text=السلام+عليكم+ابغى+استفسر+عن+نظام+الدعوات+الإلكترونية"
+                            href="https://wa.me/96597995301?text=السلام+عليكم+ابغى+استفسر+عن+نظام+الدعوات+الإلكترونية"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="group relative"
@@ -140,7 +141,7 @@ export function Navbar() {
 
                                     <div className="mt-8 pt-8 border-t">
                                         <a
-                                            href="https://wa.me/96551662001?text=السلام+عليكم+ابغى+استفسر+عن+نظام+الدعوات+الإلكترونية"
+                                            href="https://wa.me/96597995301?text=السلام+عليكم+ابغى+استفسر+عن+نظام+الدعوات+الإلكترونية"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="block"

@@ -65,10 +65,6 @@ export async function createReminderAction(
         reminderError ||
         !reminder
     ) {
-        console.error(
-            "Create reminder DB error:",
-            reminderError
-        );
 
         return {
             success: false,
@@ -154,13 +150,7 @@ export async function createReminderAction(
             data: reminder,
         };
 
-    } catch (error) {
-
-        console.error(
-            "n8n reminder webhook error:",
-            error
-        );
-
+    } catch {
         const {
             error: updateError,
         } = await supabase
@@ -178,11 +168,6 @@ export async function createReminderAction(
         );
 
         if (updateError) {
-
-            console.error(
-                "Failed to update reminder status:",
-                updateError
-            );
 
             return {
                 success: false,
@@ -416,14 +401,7 @@ export async function retryReminderAction(
                 "تمت إعادة إرسال التذكير إلى n8n",
         };
 
-    } catch (error) {
-
-        console.error(
-            "Retry reminder error:",
-            error
-        );
-
-        // يفضل أن يظل Failed
+    } catch {
         await supabase
             .from("reminders")
             .update({
@@ -513,15 +491,10 @@ export async function deleteReminderAction(
         return {
             success: true,
             message:
-                "تم حذف التذكير والصورة بنجاح",
+                "تم حذف التذكير بنجاح",
         };
 
     } catch (error) {
-
-        console.error(
-            "Delete Reminder Error:",
-            error
-        );
 
         return {
             success: false,

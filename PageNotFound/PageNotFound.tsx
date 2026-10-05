@@ -17,7 +17,7 @@ const PageNotFound = ({ path, children }: IProps) => {
                         </div>
 
                         <div className="relative text-center">
-                            <h1 className="text-[180px] md:text-[220px] font-black text-transparent bg-clip-text bg-linear-to-br from-blue-600 via-indigo-600 to-purple-600 dark:from-blue-400 dark:via-indigo-400 dark:to-purple-400 leading-none text-center animate-in zoom-in duration-700">
+                            <h1 className="text-[180px] md:text-[220px] font-black bg-clip-text bg-linear-to-br from-blue-600 via-indigo-600 to-purple-600 dark:from-blue-400 dark:via-indigo-400 dark:to-purple-400 leading-none text-center animate-in zoom-in duration-700">
                                 404
                             </h1>
                             <div

@@ -18,7 +18,6 @@ export default function TermsPage() {
     return (
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-32">
             <div className="max-w-4xl mx-auto">
-                {/* Header */}
                 <div className="mb-10">
                     <Badge className="mb-4 bg-primary/10 text-primary border-0 gap-2">
                         <Scale className="w-4 h-4" />
@@ -26,8 +25,8 @@ export default function TermsPage() {
                     </Badge>
                     <h1 className="text-4xl md:text-5xl font-bold mb-4">
                         الشروط والأحكام
-                        <span className="block bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent text-2xl md:text-3xl mt-2">
-                            انفى Pro
+                        <span className="block bg-linear-to-r from-primary to-secondary bg-clip-text text-2xl md:text-3xl mt-2">
+                            انفى 
                         </span>
                     </h1>
                     <p className="text-gray-500 text-sm">
@@ -39,7 +38,6 @@ export default function TermsPage() {
                     </p>
                 </div>
 
-                {/* Quick Navigation */}
                 <Card className="mb-8 border-2 border-primary/10 bg-linear-to-r from-primary/5 to-secondary/5">
                     <CardContent className="p-6">
                         <p className="font-semibold mb-3 text-gray-700">اقرا بسرعة:</p>
@@ -64,9 +62,7 @@ export default function TermsPage() {
                     </CardContent>
                 </Card>
 
-                {/* Content */}
                 <div className="space-y-8">
-                    {/* Section 1 */}
                     <Card id="acceptance" className="border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
                         <CardContent className="p-6 space-y-4">
                             <div className="flex items-start gap-4">
@@ -76,7 +72,7 @@ export default function TermsPage() {
                                 <div>
                                     <h2 className="text-xl font-bold mb-2">١. قبول الشروط</h2>
                                     <p className="text-gray-600 leading-relaxed">
-                                        باستخدامك لخدمة <span className="text-primary font-semibold">انفى Pro</span>،
+                                        باستخدامك لخدمة <span className="text-primary font-semibold">انفى </span>،
                                         فأنت توافق على هذي الشروط والأحكام بالكامل. لو ما توافق، لا تستخدم الخدمة.
                                     </p>
                                     <div className="mt-3 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
@@ -93,7 +89,6 @@ export default function TermsPage() {
                         </CardContent>
                     </Card>
 
-                    {/* Section 2 */}
                     <Card id="usage" className="border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
                         <CardContent className="p-6 space-y-4">
                             <div className="flex items-start gap-4">
@@ -129,7 +124,6 @@ export default function TermsPage() {
                         </CardContent>
                     </Card>
 
-                    {/* Section 3 */}
                     <Card id="intellectual" className="border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
                         <CardContent className="p-6 space-y-4">
                             <div className="flex items-start gap-4">
@@ -149,7 +143,7 @@ export default function TermsPage() {
                                         </li>
                                         <li className="flex items-start gap-3">
                                             <span className="text-primary font-bold">•</span>
-                                            <span>اسم <span className="text-primary font-semibold">انفى Pro</span> وشعاره علامة تجارية مسجلة</span>
+                                            <span>اسم <span className="text-primary font-semibold">انفى </span> وشعاره علامة تجارية مسجلة</span>
                                         </li>
                                         <li className="flex items-start gap-3">
                                             <span className="text-primary font-bold">•</span>
@@ -161,7 +155,6 @@ export default function TermsPage() {
                         </CardContent>
                     </Card>
 
-                    {/* Section 4 */}
                     <Card id="payment" className="border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
                         <CardContent className="p-6 space-y-4">
                             <div className="flex items-start gap-4">
@@ -193,7 +186,6 @@ export default function TermsPage() {
                         </CardContent>
                     </Card>
 
-                    {/* Section 5 */}
                     <Card id="liability" className="border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
                         <CardContent className="p-6 space-y-4">
                             <div className="flex items-start gap-4">
@@ -225,7 +217,6 @@ export default function TermsPage() {
                         </CardContent>
                     </Card>
 
-                    {/* Section 6 */}
                     <Card id="contact" className="border-2 border-primary/20 shadow-sm">
                         <CardContent className="p-6 space-y-4">
                             <div className="flex items-start gap-4">
@@ -239,7 +230,7 @@ export default function TermsPage() {
                                     </p>
                                     <div className="mt-4 flex flex-wrap gap-3">
                                         <a
-                                            href="https://wa.me/96551662001?text=السلام+عليكم+استفسار+عن+الشروط+والأحكام"
+                                            href="https://wa.me/96597995301?text=السلام+عليكم+استفسار+عن+الشروط+والأحكام"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="inline-flex items-center gap-2 bg-[#25D366] text-white px-4 py-2 rounded-lg hover:bg-[#128C7E] transition-colors"
@@ -263,7 +254,6 @@ export default function TermsPage() {
                     </Card>
                 </div>
 
-                {/* Footer Note */}
                 <div className="mt-10 p-6 bg-gray-50 rounded-2xl border border-gray-200">
                     <div className="flex items-start gap-3">
                         <Scale className="w-6 h-6 text-gray-400 shrink-0 mt-0.5" />
@@ -280,7 +270,6 @@ export default function TermsPage() {
                     </div>
                 </div>
 
-                {/* Back Button */}
                 <div className="mt-8 text-center">
                     <Link href="/">
                         <Button variant="outline" className="gap-2">

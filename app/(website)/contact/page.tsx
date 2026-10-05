@@ -16,7 +16,6 @@ export default function ContactPage() {
                 </div>
 
                 <div className="max-w-lg mx-auto">
-                    {/* Contact Info */}
                     <div className="space-y-4">
                         <Card className="border-2 border-primary/10">
                             <CardContent className="p-6 space-y-6">
@@ -31,7 +30,7 @@ export default function ContactPage() {
                                         <p className="text-gray-500 text-sm">رد فوري خلال دقائق</p>
                                     </div>
                                     <a
-                                        href="https://wa.me/96551662001?text=السلام+عليكم+ابغى+استفسر+عن+نظام+الدعوات+الإلكترونية"
+                                        href="https://wa.me/96597995301?text=السلام+عليكم+ابغى+استفسر+عن+نظام+الدعوات+الإلكترونية"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >

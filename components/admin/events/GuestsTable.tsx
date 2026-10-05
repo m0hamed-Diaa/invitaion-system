@@ -33,47 +33,41 @@ export default function GuestTable({
     return (
         <Table>
             <TableHeader>
-                <TableRow>
+                <TableRow className="text-center">
 
-                    <TableHead>الكود</TableHead>
+                    <TableHead className="text-center">الكود</TableHead>
 
-                    <TableHead>الاسم</TableHead>
+                    <TableHead className="text-center">الاسم</TableHead>
 
-                    <TableHead>الهاتف</TableHead>
+                    <TableHead className="text-center">الهاتف</TableHead>
 
-                    <TableHead>الحالة</TableHead>
+                    <TableHead className="text-center">الحالة</TableHead>
 
-                    <TableHead>الدعوة</TableHead>
-                    <TableHead>تاكيد الدخول </TableHead>
-                    <TableHead>طريقة الدخول</TableHead>
-                    <TableHead>وقت الدخول</TableHead>
+                    <TableHead className="text-center">الدعوة</TableHead>
+                    <TableHead className="text-center">تاكيد الدخول </TableHead>
+                    <TableHead className="text-center">طريقة الدخول</TableHead>
+                    <TableHead className="text-center">وقت الدخول</TableHead>
 
-                    <TableHead>العمليات</TableHead>
-
+                    <TableHead className="text-center">العمليات</TableHead>
                 </TableRow>
             </TableHeader>
 
             <TableBody>
-
                 {guests.length ? guests.map((guest) => (
-                    <TableRow key={guest.id}>
+                    <TableRow key={guest.id} className="text-center">
 
-                        {/* الكود */}
                         <TableCell className="font-semibold">
                             {guest.guest_code}
                         </TableCell>
 
-                        {/* الاسم */}
                         <TableCell>
                             {guest.name}
                         </TableCell>
 
-                        {/* الهاتف */}
                         <TableCell dir="ltr">
                             {guest.phone}
                         </TableCell>
 
-                        {/* الحالة */}
                         <TableCell>
                             {guest.status === "pending" && (
                                 <Badge className="bg-yellow-400">بانتظار الرد</Badge>
@@ -88,17 +82,15 @@ export default function GuestTable({
                             )}
                         </TableCell>
 
-                        {/* تم إرسال الدعوة */}
                         <TableCell className="text-center">
                             {guest.invitation_sent ? "تم الإرسال" : "لم ترسل"}
                         </TableCell>
 
                         <TableCell>{guest.attend_confirmation ? "✔" : "-"}</TableCell>
                         <TableCell>{guest.method ? guest.method === "qr" ? "QR" : "يدوى" : "-"}</TableCell>
-                        <TableCell>18/8/2016</TableCell>
+                        <TableCell>{guest.scanned_at ? new Date(guest.scanned_at).toLocaleString("ar-EG") : "-"}</TableCell>
 
-                        {/* العمليات */}
-                        <TableCell className="text-right">
+                        <TableCell>
                             <GuestActions key={guest.id} id={guest.id} status={guest.status} />
                         </TableCell>
                     </TableRow>

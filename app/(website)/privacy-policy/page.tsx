@@ -19,7 +19,6 @@ export default function PrivacyPage() {
     return (
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-32">
             <div className="max-w-4xl mx-auto">
-                {/* Header */}
                 <div className="mb-10">
                     <Badge className="mb-4 bg-primary/10 text-primary border-0 gap-2">
                         <Lock className="w-4 h-4" />
@@ -27,8 +26,8 @@ export default function PrivacyPage() {
                     </Badge>
                     <h1 className="text-4xl md:text-5xl font-bold mb-4">
                         سياسة الخصوصية
-                        <span className="block bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent text-2xl md:text-3xl mt-2">
-                            انفى Pro
+                        <span className="block bg-linear-to-r from-primary to-secondary bg-clip-text text-2xl md:text-3xl mt-2">
+                            انفى 
                         </span>
                     </h1>
                     <p className="text-gray-500 text-sm">
@@ -40,7 +39,6 @@ export default function PrivacyPage() {
                     </p>
                 </div>
 
-                {/* Quick Summary Card */}
                 <Card className="mb-8 border-2 border-primary/10 bg-linear-to-r from-primary/5 to-secondary/5">
                     <CardContent className="p-6">
                         <div className="flex items-center gap-3 mb-3">
@@ -48,7 +46,7 @@ export default function PrivacyPage() {
                             <h2 className="font-bold text-lg">نبذة سريعة</h2>
                         </div>
                         <p className="text-gray-600 leading-relaxed">
-                            في <span className="text-primary font-semibold">انفى Pro</span>،
+                            في <span className="text-primary font-semibold">انفى </span>،
                             خصوصيتك مهمة بالنسبة لنا. النظام مصمم بحيث <strong>ما يخزن أي بيانات</strong> عن المستخدمين،
                             لأن التواصل كله عبر واتساب. البيانات الوحيدة المخزنة هي للأدمن فقط لإدارة الدعوات.
                         </p>
@@ -69,9 +67,7 @@ export default function PrivacyPage() {
                     </CardContent>
                 </Card>
 
-                {/* Content */}
                 <div className="space-y-6">
-                    {/* Section 1 */}
                     <Card className="border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
                         <CardContent className="p-6 space-y-4">
                             <div className="flex items-start gap-4">
@@ -106,7 +102,6 @@ export default function PrivacyPage() {
                         </CardContent>
                     </Card>
 
-                    {/* Section 2 */}
                     <Card className="border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
                         <CardContent className="p-6 space-y-4">
                             <div className="flex items-start gap-4">
@@ -138,7 +133,6 @@ export default function PrivacyPage() {
                         </CardContent>
                     </Card>
 
-                    {/* Section 3 */}
                     <Card className="border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
                         <CardContent className="p-6 space-y-4">
                             <div className="flex items-start gap-4">
@@ -170,7 +164,6 @@ export default function PrivacyPage() {
                         </CardContent>
                     </Card>
 
-                    {/* Section 4 */}
                     <Card className="border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
                         <CardContent className="p-6 space-y-4">
                             <div className="flex items-start gap-4">
@@ -206,7 +199,6 @@ export default function PrivacyPage() {
                         </CardContent>
                     </Card>
 
-                    {/* Section 5 */}
                     <Card className="border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
                         <CardContent className="p-6 space-y-4">
                             <div className="flex items-start gap-4">
@@ -238,7 +230,6 @@ export default function PrivacyPage() {
                         </CardContent>
                     </Card>
 
-                    {/* Section 6 */}
                     <Card className="border-2 border-primary/20 shadow-sm bg-linear-to-r from-primary/5 to-secondary/5">
                         <CardContent className="p-6 space-y-4">
                             <div className="flex items-start gap-4">
@@ -277,7 +268,6 @@ export default function PrivacyPage() {
                     </Card>
                 </div>
 
-                {/* Footer Note */}
                 <div className="mt-10 p-6 bg-gray-50 rounded-2xl border border-gray-200">
                     <div className="flex items-start gap-3">
                         <Lock className="w-6 h-6 text-gray-400  mt-0.5" />
@@ -296,7 +286,6 @@ export default function PrivacyPage() {
                     </div>
                 </div>
 
-                {/* Back Button */}
                 <div className="mt-8 text-center">
                     <Link href="/">
                         <Button variant="outline" className="gap-2">

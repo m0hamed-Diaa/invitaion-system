@@ -105,7 +105,7 @@ export function FeaturesSection() {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <Badge className="mb-4 bg-primary/10 text-primary border-0">مميزات الخدمة</Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            وش اللي يميز <span className="bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent">نظامنا</span>؟
+            وش اللي يميز <span className="bg-linear-to-r from-primary to-secondary bg-clip-text">نظامنا</span>؟
           </h2>
           <p className="text-xl text-gray-600">
             مجموعة متكاملة من الميزات المصممة خصيصاً عشان دعواتك تكون مميزة وفخمة
@@ -136,7 +136,6 @@ export function FeaturesSection() {
           ))}
         </div>
 
-        {/* WhatsApp CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -153,7 +152,7 @@ export function FeaturesSection() {
               <p className="text-gray-500">تواصل معنا على واتساب واحنا نخدمك</p>
             </div>
             <a
-              href="https://wa.me/96551662001?text=السلام+عليكم+ابغى+استفسر+عن+نظام+الدعوات+الإلكترونية"
+              href="https://wa.me/96597995301?text=السلام+عليكم+ابغى+استفسر+عن+نظام+الدعوات+الإلكترونية"
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -134,7 +134,7 @@ export default function ReminderDialog({
             }
 
             toast.success(
-                "تم إنشاء التذكير بنجاح"
+                "تم إنشاء وبدأ إرسال التذكير بنجاح"
             );
             setLoading(false);
 
@@ -172,8 +172,6 @@ export default function ReminderDialog({
                     }
                     className="space-y-6"
                 >
-
-                    {/* المستهدفين */}
 
                     <div className="space-y-2">
 
@@ -219,9 +217,6 @@ export default function ReminderDialog({
                         </Select>
 
                     </div>
-
-
-                    {/* نوع المحتوى */}
 
                     <div className="space-y-2">
 
@@ -269,8 +264,6 @@ export default function ReminderDialog({
                     </div>
 
 
-                    {/* الرسالة */}
-
                     <div className="space-y-2">
 
                         <label className="text-sm font-medium">
@@ -294,8 +287,6 @@ export default function ReminderDialog({
 
                     </div>
 
-
-                    {/* الصورة */}
 
                     {contentType ===
                         "image"

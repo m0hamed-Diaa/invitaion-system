@@ -82,7 +82,6 @@ export function ComparisonTable() {
     return (
         <section className="py-20 bg-linear-to-b from-gray-50 to-white">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -96,7 +95,7 @@ export function ComparisonTable() {
                     </Badge>
 
                     <h2 className="text-3xl md:text-5xl font-bold mb-4">
-                        ليش تختار <span className="bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent">الإلكتروني</span> بدل الورقي؟
+                        ليش تختار <span className="bg-linear-to-r from-primary to-secondary bg-clip-text">الإلكتروني</span> بدل الورقي؟
                     </h2>
 
                     <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -104,9 +103,7 @@ export function ComparisonTable() {
                     </p>
                 </motion.div>
 
-                {/* Comparison Cards */}
                 <div className="grid md:grid-cols-2 gap-8 mb-12">
-                    {/* Traditional Card */}
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -151,7 +148,6 @@ export function ComparisonTable() {
                         </Card>
                     </motion.div>
 
-                    {/* Digital Card */}
                     <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -159,7 +155,6 @@ export function ComparisonTable() {
                         viewport={{ once: true }}
                     >
                         <Card className="border-2 border-primary/20 bg-linear-to-br from-primary/5 to-secondary/5 h-full relative overflow-hidden">
-                            {/* Decorative gradient */}
                             <div className="absolute top-0 right-0 w-64 h-64 bg-linear-to-bl from-primary/10 to-secondary/10 rounded-full blur-3xl" />
 
                             <CardContent className="p-6 relative">
@@ -168,8 +163,8 @@ export function ComparisonTable() {
                                         <Sparkles className="w-6 h-6 text-white" />
                                     </div>
                                     <div>
-                                        <h3 className="text-xl font-bold bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent">
-                                            انفى Pro
+                                        <h3 className="text-xl font-bold bg-linear-to-r from-primary to-secondary bg-clip-text">
+                                            انفى 
                                         </h3>
                                         <p className="text-sm text-gray-500">نظام دعوات إلكترونية</p>
                                     </div>
@@ -213,7 +208,6 @@ export function ComparisonTable() {
                     </motion.div>
                 </div>
 
-                {/* Bottom CTA */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -228,7 +222,7 @@ export function ComparisonTable() {
                         </div>
                         <div className="w-px h-8 bg-gray-200 hidden sm:block" />
                         <a
-                            href="https://wa.me/96551662001?text=السلام+عليكم+ابغى+استفسر+عن+نظام+الدعوات+الإلكترونية"
+                            href="https://wa.me/96597995301?text=السلام+عليكم+ابغى+استفسر+عن+نظام+الدعوات+الإلكترونية"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
@@ -241,7 +235,6 @@ export function ComparisonTable() {
                     </div>
                 </motion.div>
 
-                {/* Stats */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}

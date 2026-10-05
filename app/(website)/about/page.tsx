@@ -9,14 +9,14 @@ export default function AboutPage() {
                 <Badge className="mb-4 bg-primary/10 text-primary border-0">عن الخدمة</Badge>
                 <h1 className="text-4xl md:text-5xl font-bold mb-6">
                     نظام دعوات إلكترونية
-                    <span className="block bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent">
+                    <span className="block bg-linear-to-r from-primary to-secondary bg-clip-text">
                         بلمسة خليجية
                     </span>
                 </h1>
 
                 <div className="prose prose-lg max-w-none">
                     <p className="text-xl text-gray-600 leading-relaxed">
-                        انفى Pro هو نظام دعوات إلكترونية متطور صممناه خصيصاً عشان يخدم السوق الخليجي.
+                        انفى  هو نظام دعوات إلكترونية متطور صممناه خصيصاً عشان يخدم السوق الخليجي.
                         النظام مخصص <span className="text-primary font-semibold">للأدمن فقط</span>،
                         العملاء يتواصلون معك بسهولة عبر واتساب.
                     </p>
@@ -78,7 +78,7 @@ export default function AboutPage() {
                             الرد خلال دقائق!
                         </p>
                         <a
-                            href="https://wa.me/96551662001?text=السلام+عليكم+ابغى+استفسر+عن+نظام+الدعوات+الإلكترونية"
+                            href="https://wa.me/96597995301?text=السلام+عليكم+ابغى+استفسر+عن+نظام+الدعوات+الإلكترونية"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 mt-4 text-[#25D366] font-semibold hover:underline"

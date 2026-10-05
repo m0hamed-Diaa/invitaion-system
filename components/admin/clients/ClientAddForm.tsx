@@ -107,8 +107,6 @@ export default function EventAddForm({
 
                     <FieldGroup>
 
-                        {/* Name */}
-
                         <Controller
 
                             control={form.control}
@@ -157,7 +155,6 @@ export default function EventAddForm({
                             )}
                         />
 
-                        {/* Phone */}
                         <Controller
                             control={form.control}
 
@@ -201,7 +198,6 @@ export default function EventAddForm({
 
                             )}
                         />
-                        {/* Quest  */}
                         <Controller
                             control={form.control}
                             name="expected_guests"

@@ -42,7 +42,7 @@ export default function ClientSelect({
 
     return (
         <Popover open={open} onOpenChange={setOpen}>
-            <PopoverTrigger className="border rounded-md w-30 flex items-center justify-between gap-2">
+            <PopoverTrigger className="border rounded-md w-50 p-1 flex items-center justify-between gap-2">
                 {value
                     ? clients.find(c => c.id === value)?.name
                     : placeholder}
@@ -51,10 +51,9 @@ export default function ClientSelect({
 
             </PopoverTrigger>
 
-            <PopoverContent className="w-100 p-0">
+            <PopoverContent className="md:w-100 p-0 mx-2 mt-2">
 
                 <Command>
-
                     <CommandInput placeholder="ابحث عن العميل..." />
 
                     <CommandEmpty>

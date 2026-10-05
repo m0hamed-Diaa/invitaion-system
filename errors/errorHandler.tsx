@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Home, RefreshCw, AlertCircle } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface IProps {
     statusCode?: number;
@@ -15,8 +16,9 @@ const ErrorHandler = ({
     title = "خطأ في الخادم الداخلي",
     message = "حدث خطأ في الخادم الداخلي. حاول تحديث الصفحة أو تواصل معنا إذا استمرت المشكلة.",
 }: IProps) => {
+    const router = useRouter();
     const handleRefresh = () => {
-        window.location.reload();
+        router.refresh();
     };
 
     return (
@@ -36,8 +38,6 @@ const ErrorHandler = ({
                         </div>
                     </div>
                 </div>
-
-                {/* Error Code */}
                 <div className="space-y-2">
                     <h1 className="text-5xl md:text-8xl font-bold text-gray-900 dark:text-gray-100 tracking-tight">
                         {statusCode}
@@ -45,17 +45,12 @@ const ErrorHandler = ({
                     <div className="h-1 w-24 bg-red-500 mx-auto rounded-full"></div>
                 </div>
 
-                {/* Error Title */}
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200">
                     {title}
                 </h2>
-
-                {/* Error Message */}
                 <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-md mx-auto leading-relaxed">
                     {message}
                 </p>
-
-                {/* Action Buttons */}
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
                     <Link href={`${path}`} className="w-full sm:w-auto">
                         <Button

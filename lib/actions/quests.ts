@@ -2,6 +2,7 @@
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { generateGuestCode } from "../utils/generateGuestCode";
+import { getStoragePath } from "../supabase/getStoragePath";
 
 interface ExcelGuest {
     name: string;
@@ -201,31 +202,75 @@ export async function updateGuestAction(
     };
 }
 
-
-export async function deleteGuestAction(
-    id: string
-) {
+export async function deleteGuestAction(id: string) {
     const supabase = await createClient();
 
-    const { error } = await supabase
-        .from("guests")
-        .delete()
-        .eq("id", id);
+    try {
+        const {
+            data: guest,
+            error: guestError,
+        } = await supabase
+            .from("guests")
+            .select("id, event_id, qr_code")
+            .eq("id", id)
+            .single();
 
-    if (error) {
+        if (guestError) {
+            throw guestError;
+        }
+
+        const qrPath = getStoragePath(
+            guest.qr_code
+        );
+
+        if (qrPath) {
+            const {
+                error: storageError,
+            } = await supabase
+                .storage
+                .from("invitations")
+                .remove([qrPath]);
+
+            if (storageError) {
+                throw storageError;
+            }
+        }
+
+        const {
+            error: deleteError,
+        } = await supabase
+            .from("guests")
+            .delete()
+            .eq("id", id);
+
+        if (deleteError) {
+            throw deleteError;
+        }
+
+        revalidatePath("/admin/events");
+
+        return {
+            success: true,
+            message:
+                "تم حذف المدعو وصورة QR بنجاح",
+        };
+
+    } catch (error) {
+        console.error(
+            "Delete Guest Error:",
+            error
+        );
+
         return {
             success: false,
-            message: error.message,
+            message:
+                error instanceof Error
+                    ? error.message
+                    : "حدث خطأ أثناء حذف المدعو",
         };
     }
-
-    revalidatePath("/admin/events");
-
-    return {
-        success: true,
-        message: "تم حذف المدعو بنجاح",
-    };
 }
+
 
 
 export async function updateGuestStatus(

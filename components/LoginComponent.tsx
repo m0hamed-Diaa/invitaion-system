@@ -80,9 +80,7 @@ export default function LoginComponent() {
             router.replace("/admin");
             router.refresh();
 
-        } catch (error) {
-            console.error(error);
-
+        } catch {
             toast.error("حدث خطأ أثناء تسجيل الدخول");
         } finally {
             setLoading(false);
@@ -90,12 +88,12 @@ export default function LoginComponent() {
     }
 
     return (
-        <div className="flex items-center justify-center h-screen">
+        <div className="flex items-center justify-center h-screen mx-4">
             <Card className="w-full max-w-md">
                 <CardHeader>
 
                     <CardTitle>
-                        اهلا بك، تسجيل الدخول
+                        اهلا بك لصفحة تسجيل الدخول
                     </CardTitle>
 
                     <CardDescription>
@@ -112,9 +110,6 @@ export default function LoginComponent() {
                     >
 
                         <FieldGroup>
-
-                            {/* Email */}
-
                             <Controller
                                 control={form.control}
                                 name="email"
@@ -146,8 +141,6 @@ export default function LoginComponent() {
 
                                 )}
                             />
-
-                            {/* Password */}
 
                             <Controller
                                 control={form.control}

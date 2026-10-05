@@ -136,12 +136,7 @@ export async function createEventAction(
             .select()
             .single();
 
-        if (error || !event) {
-            console.error(
-                "Create event error:",
-                error
-            );
-
+        if (error || !event) { 
             throw new Error(
                 "فشل في إنشاء المناسبة"
             );
@@ -169,10 +164,6 @@ export async function createEventAction(
                 !webhookUrl ||
                 !webhookSecret
             ) {
-                console.error(
-                    "Missing n8n environment variables"
-                );
-
                 return {
                     success: true,
 
@@ -216,22 +207,6 @@ export async function createEventAction(
             if (
                 !response.ok
             ) {
-                const errorText =
-                    await response.text();
-
-                console.error(
-                    "n8n Error:",
-                    {
-                        status:
-                            response.status,
-
-                        statusText:
-                            response.statusText,
-
-                        body:
-                            errorText,
-                    }
-                );
 
                 return {
                     success: true,
@@ -260,12 +235,7 @@ export async function createEventAction(
                 data: event,
             };
 
-        } catch (n8nError) {
-            console.error(
-                "n8n connection error:",
-                n8nError
-            );
-
+        } catch {
             return {
                 success: true,
 
@@ -280,12 +250,7 @@ export async function createEventAction(
             };
         }
 
-    } catch (error) {
-
-        console.error(
-            "Create event error:",
-            error
-        );
+    } catch {
 
         throw new Error(
             "حدث خطأ أثناء إنشاء المناسبة"
@@ -402,10 +367,6 @@ export async function resendInvitationsAction(
             process.env.N8N_WEBHOOK_SECRET;
 
         if (!webhookUrl || !webhookSecret) {
-            console.error(
-                "Missing n8n environment variables"
-            );
-
             return {
                 success: false,
                 message:
@@ -435,14 +396,6 @@ export async function resendInvitationsAction(
         );
 
         if (!response.ok) {
-            const errorText =
-                await response.text();
-
-            console.error(
-                "n8n Error:",
-                response.status,
-                errorText
-            );
 
             return {
                 success: false,
@@ -457,12 +410,7 @@ export async function resendInvitationsAction(
                 "تم بدء إعادة إرسال الدعوات غير المرسلة",
         };
 
-    } catch (error) {
-
-        console.error(
-            "Resend invitations error:",
-            error
-        );
+    } catch {
 
         return {
             success: false,

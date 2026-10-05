@@ -23,9 +23,9 @@ import ReminderButton from "@/components/admin/reminders/ReminderButton";
 import { redirect } from "next/navigation";
 import ReminderSection from "@/components/admin/reminders/ReminderSection";
 import GuestTable from "@/components/admin/events/GuestsTable";
-// import AttendanceTable from "@/components/admin/events/AttendanceTable";
 import ResendButton from "@/components/admin/reminders/ResendEvent";
 import RefreshPage from "@/components/admin/events/RefreshPage";
+import DownLoadButton from "@/components/admin/events/DownloadButton";
 
 interface Props {
     params: Promise<{
@@ -90,8 +90,7 @@ export default async function GuestsPage({
     return (
 
         <div className="space-y-6">
-
-            <div className="flex flex-col sm:flex-row items-center gap-2">
+            <div className="flex flex-col sm:flex-row items-center gap-2 overflow-x-auto">
                 <ReminderButton
                     eventId={event.id}
                 />
@@ -100,10 +99,9 @@ export default async function GuestsPage({
                     <ResendButton event_Id={event.id} />
                 )}
 
-                <Button className={"w-full sm:w-fit"} disabled>
-                    تحميل تقرير بالمدعوين
-                </Button>
-
+                <DownLoadButton
+                    eventId={event.id}
+                />
                 <Link className={"w-full sm:w-fit"} href="/admin/clients">
                     <Button className={"w-full"}>
                         الذهاب لصفحة العملاء
@@ -153,7 +151,7 @@ export default async function GuestsPage({
                         </p>
 
                         <Badge>
-                            {client.expected_guests}
+                            {stats.total}
                         </Badge>
                     </div>
 
@@ -163,8 +161,6 @@ export default async function GuestsPage({
 
             {event || guests.length !== 0 ? (
                 <>
-                    {/* بيانات المناسبة */}
-
                     <Card className="">
 
                         <CardHeader>
@@ -224,8 +220,6 @@ export default async function GuestsPage({
                         </CardContent>
 
                     </Card>
-
-                    {/* الاحصائيات */}
 
                     <div className="grid md:grid-cols-4 gap-4">
 
@@ -366,7 +360,6 @@ export default async function GuestsPage({
 
                         </TabsList>
 
-                        {/* جدول المدعوين */}
                         <TabsContent
                             value="guests"
                             className="space-y-6 mt-6"
@@ -405,7 +398,6 @@ export default async function GuestsPage({
 
                         </TabsContent>
 
-                        {/* جدول التذكيرات */}
                         <TabsContent
                             value="reminders"
                             className="mt-6"
@@ -414,9 +406,7 @@ export default async function GuestsPage({
                             <ReminderSection
                                 eventId={event.id}
                             />
-
                         </TabsContent>
-
                     </Tabs>
                 </>
             ) : <h1 className="mr-2">لايوجد مناسبة حالية لهذا العميل

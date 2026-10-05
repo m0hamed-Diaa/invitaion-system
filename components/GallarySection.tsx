@@ -35,8 +35,36 @@ const galleryImages = [
     },
     {
         src: "/images/inve5.jpeg",
-        title: "دعوة استقبال",
+        title: "دعوة استقبال العروس",
         category: "مناسبة",
+        width: 400,
+        height: 500
+    },
+    {
+        src: "/images/inve6.jpeg",
+        title: "دعوة عقد قران",
+        category: "مناسبات",
+        width: 400,
+        height: 500
+    },
+    {
+        src: "/images/inve7.jpeg",
+        title: "دعوة عقد قران",
+        category: "مناسبات",
+        width: 400,
+        height: 500
+    },
+    {
+        src: "/images/inve8.jpeg",
+        title: "دعوة عقد قران",
+        category: "مناسبات",
+        width: 400,
+        height: 500
+    },
+    {
+        src: "/images/inve9.jpeg",
+        title: "دعوة عقد قران",
+        category: "مناسبات",
         width: 400,
         height: 500
     }

@@ -35,10 +35,9 @@ const InternetConnectionServicesProvider = ({
         if (!navigator.onLine) {
             handleOffline();
         }
-        // cleanup
         window.addEventListener("online", handleOnline);
         window.addEventListener("offline", handleOffline);
-
+console.log(`Internet connection status changed to: ${navigator.onLine ? "online" : "offline"}`);
         return () => {
             window.removeEventListener("online", handleOnline);
             window.removeEventListener("offline", handleOffline);

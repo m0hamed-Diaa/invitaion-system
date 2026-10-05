@@ -54,7 +54,7 @@ export function CTASection() {
 
                     <div className="flex flex-wrap justify-center gap-4">
                         <a
-                            href="https://wa.me/96551662001?text=السلام+عليكم+ابغى+استفسر+عن+نظام+الدعوات+الإلكترونية"
+                            href="https://wa.me/96597995301?text=السلام+عليكم+ابغى+استفسر+عن+نظام+الدعوات+الإلكترونية"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
@@ -67,7 +67,7 @@ export function CTASection() {
                     </div>
 
                     <p className="text-white/60 text-sm mt-6">
-                        * الرد خلال دقائق. نشتغل من الأحد للخميس
+                        الرد خلال دقائق. نشتغل  24 ساعة 7 أيام في الأسبوع.
                     </p>
                 </motion.div>
             </div>
