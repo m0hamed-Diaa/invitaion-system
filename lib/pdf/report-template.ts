@@ -92,26 +92,26 @@ margin-top:20px;
   font-weight: 700;
 }
 
-.stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px;
+margin-bottom:35px;
 }
 
-.stat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
+.stats .stat{
+padding:18px;
+border-radius:10px;
+text-align:center;
+background:#f8fafc;
+border:1px solid #ddd;
 }
 
-.stat h2 {
-  margin: 0;
+.stats .stat h2{
+font-size:32px;
+margin-bottom:10px;
 }
 
-.stat svg {
-  flex-shrink: 0;
-}
 
 table{
 width:100%;
@@ -329,29 +329,20 @@ ${data.title}
 <h2>
 ${data.guests.length}
 </h2>
-<div class="stat-label">
-    
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users preview-icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg>
-
-    <span>إجمالي المعازيم</span>
-  </div>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users preview-icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg> إجمالي المعازيم
 </div>
 
 <div class="stat">
 <h2>
 ${data.attended}
 </h2>
-<div class="stat-label">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check preview-icon"><path d="M20 6 9 17l-5-5"/></svg> 
-    <span>الحضور</span>
-  </div>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check preview-icon"><path d="M20 6 9 17l-5-5"/></svg> الحضور
 </div>
 
 <div class="stat">
 <h2>
 ${data.declined}
 </h2>
-<div class="stat-label">
 <svg
   xmlns="http://www.w3.org/2000/svg"
   width="24"
@@ -366,8 +357,7 @@ ${data.declined}
   <circle cx="12" cy="12" r="10"/>
   <path d="m15 9-6 6"/>
   <path d="m9 9 6 6"/>
-</svg> 
-    <span>لم يحضر</span>
+</svg> لم يحضر
 </div>
 </div>
 
@@ -375,10 +365,9 @@ ${data.declined}
 <h2>
 ${data.pending}
 </h2>
-<div class="stat-label">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hourglass preview-icon"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/></svg> 
-    <span>بانتظار الرد</span>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hourglass preview-icon"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/></svg> بانتظار الرد
 </div>
+
 </div>
 
 </div>
