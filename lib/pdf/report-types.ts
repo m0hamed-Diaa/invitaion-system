@@ -35,6 +35,8 @@ export interface ReportData {
     pending: number;
 
     guests: ReportGuest[];
+
+    cairoFontBase64: string;
 }
 
 
