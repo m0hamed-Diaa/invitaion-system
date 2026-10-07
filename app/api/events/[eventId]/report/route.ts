@@ -121,8 +121,6 @@ import puppeteer from "puppeteer-core";
 import chromium from "@sparticuz/chromium";
 import { reportTemplate } from "@/lib/pdf/report-template";
 import { Guest } from "@/lib/pdf/report-types";
-import fs from "fs";
-import path from "path";
 export const runtime = "nodejs";
 export const maxDuration = 60;
 
@@ -202,16 +200,6 @@ export async function GET(
 
         const page = await browser.newPage();
 
-        const fontPath = path.join(
-            process.cwd(),
-            "public",
-            "fonts",
-            "Cairo-VariableFont_slnt,wght.ttf"
-        );
-
-        const cairoFontBase64 = fs
-            .readFileSync(fontPath)
-            .toString("base64");
 
         const html = reportTemplate({
             title: event.title,
@@ -225,7 +213,6 @@ export async function GET(
             declined,
             pending,
             guests,
-            cairoFontBase64,
         });
 
         await page.setContent(html, {

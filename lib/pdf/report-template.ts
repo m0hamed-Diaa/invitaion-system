@@ -24,22 +24,15 @@ export function reportTemplate(data: ReportData) {
 <style>
 
 <>
-    @font-face {
-        font-family: "Cairo";
-        src: url("data:font/ttf;base64,${data.cairoFontBase64}") format("truetype");
-        font-weight: 100 900;
-        font-style: normal;
-        font-display: block;
-    }
-        
-    *{
+    * {
         margin:0;
         padding:0;
         box-sizing:border-box;
         font-family:'Cairo', sans-serif;
-        }
+    }
 
-        body{
+        body
+        html {
         font-family: "Cairo", sans-serif;
 direction:rtl;
 padding:20px;
