@@ -115,8 +115,6 @@
 
 
 
-
-
 import { createClient } from "@/lib/supabase/server";
 import { NextRequest, NextResponse } from "next/server";
 import puppeteer from "puppeteer-core";
@@ -124,13 +122,18 @@ import chromium from "@sparticuz/chromium";
 import { reportTemplate } from "@/lib/pdf/report-template";
 import { Guest } from "@/lib/pdf/report-types";
 
+export const runtime = "nodejs";
+export const maxDuration = 60;
 
-async function urlToBase64(url: string | null | undefined): Promise<string> {
-
+async function urlToBase64(
+    url: string | null | undefined
+): Promise<string> {
     if (!url) return "";
 
     try {
-        const res = await fetch(url, { signal: AbortSignal.timeout(15000) });
+        const res = await fetch(url, {
+            signal: AbortSignal.timeout(15000),
+        });
 
         if (!res.ok) {
             console.error("فشل تحميل صورة الدعوة:", res.status);
@@ -138,10 +141,10 @@ async function urlToBase64(url: string | null | undefined): Promise<string> {
         }
 
         const buffer = await res.arrayBuffer();
-        const contentType = res.headers.get("content-type") || "image/jpeg";
+        const contentType =
+            res.headers.get("content-type") || "image/jpeg";
 
         return `data:${contentType};base64,${Buffer.from(buffer).toString("base64")}`;
-
     } catch (err) {
         console.error("خطأ أثناء تحميل صورة الدعوة:", err);
         return "";
@@ -152,6 +155,8 @@ export async function GET(
     request: NextRequest,
     { params }: { params: Promise<{ eventId: string }> }
 ) {
+    let browser;
+
     try {
         const { eventId } = await params;
         const supabase = await createClient();
@@ -171,72 +176,96 @@ export async function GET(
 
         const guests: Guest[] = event.guests ?? [];
 
-        const attended = guests.filter(g => g.status === "attending").length;
-        const declined = guests.filter(g => g.status === "declined").length;
-        const pending = guests.filter(g => g.status === "pending").length;
+        const attended = guests.filter(
+            (g) => g.status === "attending"
+        ).length;
 
-        const [invitationBase64] = await urlToBase64(event.invitation_image);
+        const declined = guests.filter(
+            (g) => g.status === "declined"
+        ).length;
 
-        const browser = await puppeteer.launch({
+        const pending = guests.filter(
+            (g) => g.status === "pending"
+        ).length;
+
+        const invitationBase64 = await urlToBase64(
+            event.invitation_image
+        );
+
+        browser = await puppeteer.launch({
             args: chromium.args,
             executablePath: await chromium.executablePath(),
             headless: true,
             timeout: 30000,
         });
 
-        try {
-            const page = await browser.newPage();
+        const page = await browser.newPage();
 
-            const html = reportTemplate({
-                title: event.title,
-                client: { name: event.client.name },
-                invitation_image: invitationBase64,
-                reportDate: new Date().toLocaleDateString("ar-EG"),
-                totalGuests: guests.length,
-                attended,
-                declined,
-                pending,
-                guests,
-            });
+        const html = reportTemplate({
+            title: event.title,
+            client: {
+                name: event.client.name,
+            },
+            invitation_image: invitationBase64,
+            reportDate: new Date().toLocaleDateString("ar-EG"),
+            totalGuests: guests.length,
+            attended,
+            declined,
+            pending,
+            guests,
+        });
 
-            await page.setContent(html, {
-                waitUntil: "domcontentloaded",
-                timeout: 30000,
-            });
+        await page.setContent(html, {
+            waitUntil: "domcontentloaded",
+            timeout: 30000,
+        });
 
-            const pdf = await page.pdf({
-                format: "A4",
-                printBackground: true,
-                preferCSSPageSize: true,
-                margin: {
-                    top: "20px",
-                    bottom: "20px",
-                    left: "20px",
-                    right: "20px",
-                },
-            });
+        const pdf = await page.pdf({
+            format: "A4",
+            printBackground: true,
+            preferCSSPageSize: true,
+            margin: {
+                top: "20px",
+                bottom: "20px",
+                left: "20px",
+                right: "20px",
+            },
+        });
 
-            const fileName = encodeURIComponent(`تقرير-${event.title}.pdf`);
+        const fileName = encodeURIComponent(
+            `تقرير-${event.title}.pdf`
+        );
 
-            return new NextResponse(Buffer.from(pdf), {
-                headers: {
-                    "Content-Type": "application/pdf",
-                    "Content-Disposition": `attachment; filename="report.pdf"; filename*=UTF-8''${fileName}`,
-                },
-            });
-        } finally {
-            await browser.close();
-        }
-
+        return new NextResponse(Buffer.from(pdf), {
+            headers: {
+                "Content-Type": "application/pdf",
+                "Content-Disposition":
+                    `attachment; filename="report.pdf"; filename*=UTF-8''${fileName}`,
+            },
+        });
     } catch (error) {
         console.error("PDF REPORT ERROR:", error);
 
         return NextResponse.json(
             {
                 error: "Failed to generate report",
-                details: error instanceof Error ? error.message : String(error),
+                details:
+                    error instanceof Error
+                        ? error.message
+                        : String(error),
             },
             { status: 500 }
         );
+    } finally {
+        if (browser) {
+            try {
+                await browser.close();
+            } catch (closeError) {
+                console.error(
+                    "Browser close error:",
+                    closeError
+                );
+            }
+        }
     }
 }
