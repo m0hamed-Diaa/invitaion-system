@@ -99,7 +99,7 @@ export function GallerySection() {
                                         src={image.src}
                                         alt={image.title}
                                         fill
-                                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                        className="transition-transform rounded-md duration-500 group-hover:scale-110"
                                         sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                                     />
                                     <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
