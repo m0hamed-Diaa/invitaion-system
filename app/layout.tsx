@@ -14,6 +14,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.invieq8.com"),
   title: "انفى | نظام دعوات إلكترونية احترافي",
   description: "أطلق دعواتك الإلكترونية بكل احترافية مع انفى",
   keywords: "دعوات الكترونية, تصميم دعوات, مناسبات, ادارة فعاليات",
