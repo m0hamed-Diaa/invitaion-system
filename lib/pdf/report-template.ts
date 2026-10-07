@@ -320,10 +320,7 @@ ${data.title}
   </div>
 </div>
 
-
-
 <div class="stats">
-
 
 <div class="stat">
 <h2>
@@ -359,15 +356,12 @@ ${data.declined}
   <path d="m9 9 6 6"/>
 </svg> لم يحضر
 </div>
-</div>
 
 <div class="stat">
 <h2>
 ${data.pending}
 </h2>
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hourglass preview-icon"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/></svg> بانتظار الرد
-</div>
-
 </div>
 
 </div>
