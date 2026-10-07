@@ -24,6 +24,7 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/*": [
       "./node_modules/@sparticuz/chromium/**/*",
+      "./public/fonts/**/*",
     ],
   },
 };
