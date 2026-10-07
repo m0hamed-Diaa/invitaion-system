@@ -1,4 +1,14 @@
 import { ReportData } from "./report-types";
+import fs from "fs";
+import path from "path";
+const logoPath = path.join(
+    process.cwd(),
+    "public",
+    "images",
+    "logo.png"
+);
+
+const logoBase64 = fs.readFileSync(logoPath).toString("base64");
 
 export function reportTemplate(data: ReportData) {
 
@@ -204,7 +214,10 @@ h3{
 <div class="header-images">
 
     <div class="logo">
-        <img src="${process.env.NEXT_PUBLIC_LOGO_URL}/images/logo.png" class="logo-img" />
+        <img
+            src="data:image/png;base64,${logoBase64}"
+            class="logo-img"
+        />
     </div>
 
     <div class="invitation-frame">
