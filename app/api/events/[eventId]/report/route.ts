@@ -99,9 +99,13 @@ export async function GET(
         });
 
     } catch (error) {
-        console.error(error);
+        console.error("PDF REPORT ERROR:", error);
+
         return NextResponse.json(
-            { error: "Failed to generate report" },
+            {
+                error: "Failed to generate report",
+                details: error instanceof Error ? error.message : String(error),
+            },
             { status: 500 }
         );
     }
