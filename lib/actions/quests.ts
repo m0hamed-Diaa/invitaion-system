@@ -252,7 +252,7 @@ export async function deleteGuestAction(id: string) {
         return {
             success: true,
             message:
-                "تم حذف المدعو وصورة QR بنجاح",
+                qrPath ? "تم حذف المدعو وصورة QR بنجاح" : "تم حذف المدعو بنجاح",
         };
 
     } catch (error) {
