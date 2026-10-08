@@ -18,7 +18,6 @@ async function urlToBase64(
         });
 
         if (!res.ok) {
-            console.error("فشل تحميل صورة الدعوة:", res.status);
             return "";
         }
 
@@ -27,8 +26,7 @@ async function urlToBase64(
             res.headers.get("content-type") || "image/jpeg";
 
         return `data:${contentType};base64,${Buffer.from(buffer).toString("base64")}`;
-    } catch (err) {
-        console.error("خطأ أثناء تحميل صورة الدعوة:", err);
+    } catch {
         return "";
     }
 }
@@ -131,8 +129,6 @@ export async function GET(
             },
         });
     } catch (error) {
-        console.error("PDF REPORT ERROR:", error);
-
         return NextResponse.json(
             {
                 error: "Failed to generate report",
