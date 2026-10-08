@@ -95,7 +95,7 @@ export default async function GuestsPage({
                     eventId={event.id}
                 />
 
-                {failed !== 0 && (
+                {failed > 0 || failed !== 0 && (
                     <ResendButton event_Id={event.id} />
                 )}
 
