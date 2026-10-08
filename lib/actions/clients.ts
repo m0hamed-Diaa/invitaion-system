@@ -207,10 +207,6 @@ export async function deleteClientAction(
                 Boolean(file)
         );
 
-        // ==========================================
-        // 5. Convert URLs → Storage Paths
-        // ==========================================
-
         const paths = Array.from(
             new Set(
                 files
