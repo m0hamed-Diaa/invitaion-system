@@ -219,9 +219,9 @@ export async function deleteGuestAction(id: string) {
             throw guestError;
         }
 
-        const qrPath = getStoragePath(
+        const qrPath = guest.qr_code ? getStoragePath(
             guest.qr_code
-        );
+        ) : null;
 
         if (qrPath) {
             const {

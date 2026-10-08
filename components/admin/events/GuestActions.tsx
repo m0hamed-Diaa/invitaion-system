@@ -127,10 +127,7 @@ export default function GuestActions({
 
             router.refresh();
 
-        } catch (error) {
-
-            console.error(error);
-
+        } catch {
             toast.error(
                 "حدث خطأ أثناء تعديل الحالة"
             );
