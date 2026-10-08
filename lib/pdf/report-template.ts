@@ -65,31 +65,16 @@ margin-bottom:30px;
 margin-top:20px;
 }
 
-.card {
-  border: 1px solid #E5E7EB;
-  padding: 18px;
-  border-radius: 10px;
-  background: #FAFAFA;
+.card{
+border:1px solid #ddd;
+padding:18px;
+border-radius:10px;
+background:#fafafa;
 }
 
-.card-label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 0 0 8px;
-  color: #374151;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.card-label svg {
-  flex-shrink: 0;
-}
-
-.card-value {
-  color: #111827;
-  font-size: 16px;
-  font-weight: 700;
+.card b{
+display:block;
+margin-bottom:5px;
 }
 
 .stats{
@@ -99,7 +84,7 @@ gap:15px;
 margin-bottom:35px;
 }
 
-.stats .stat{
+.stat{
 padding:18px;
 border-radius:10px;
 text-align:center;
@@ -107,11 +92,10 @@ background:#f8fafc;
 border:1px solid #ddd;
 }
 
-.stats .stat h2{
+.stat h2{
 font-size:32px;
 margin-bottom:10px;
 }
-
 
 table{
 width:100%;
@@ -260,110 +244,80 @@ ${data.title}
 
 <div class="card">
 
-  <p class="card-label">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="#D4AF7A"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    >
-      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
-      <circle cx="12" cy="7" r="4"/>
-    </svg>
+<b>
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4AF7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> اسم العميل</sp
+</b>
 
-    <span>اسم العميل</span>
-  </p>
-
-  <div class="card-value">
-    ${data.client.name}
-  </div>
+${data.client.name}
 
 </div>
 
 
 
 <div class="card">
-  <p class="card-label">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="#B8894A"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    >
-      <path d="M8 2v3"/>
-      <path d="M16 2v3"/>
-      <rect x="3" y="3" width="18" height="18" rx="2"/>
-      <path d="M3 9h18"/>
-      <path d="M8 13h.01"/>
-      <path d="M12 13h.01"/>
-      <path d="M16 13h.01"/>
-      <path d="M8 17h.01"/>
-      <path d="M12 17h.01"/>
-      <path d="M16 17h.01"/>
-    </svg>
 
-    <span>تاريخ التقرير</span>
-  </p>
+<b> 
+ <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B8894A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v3"/><path d="M16 2v3"/><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M8 13h.01"/><path d="M12 13h.01"/><path d="M16 13h.01"/><path d="M8 17h.01"/><path d="M12 17h.01"/><path d="M16 17h.01"/></svg> تاريخ التقرير
+</b>
 
-  <div class="card-value">
-    ${new Date().toLocaleDateString("ar-EG")}
-  </div>
+${new Date().toLocaleDateString("ar-EG")}
+
 </div>
+
+
+</div>
+
+
 
 <div class="stats">
 
+
 <div class="stat">
+
 <h2>
 ${data.guests.length}
 </h2>
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users preview-icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg> إجمالي المعازيم
+
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users preview-icon"><path d="m16 21v-2a4 4 0 0 0-4-4h6a4 4 0 0 0-4 4v2"/><path d="m16 3.128a4 4 0 0 1 0 7.744"/><path d="m22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg> إجمالي المعازيم  
+
 </div>
 
+
+
 <div class="stat">
+
 <h2>
 ${data.attended}
 </h2>
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check preview-icon"><path d="M20 6 9 17l-5-5"/></svg> الحضور
+
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide- check preview-icon"><path d="M20 6 9 17l-5-5"/></svg> الحضور
+
 </div>
 
+
+
 <div class="stat">
+
 <h2>
 ${data.declined}
 </h2>
-<svg
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="#DC2626"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <circle cx="12" cy="12" r="10"/>
-  <path d="m15 9-6 6"/>
-  <path d="m9 9 6 6"/>
-</svg> لم يحضر
+
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/> </svg> لم يحضر
+
 </div>
 
+
+
 <div class="stat">
+
 <h2>
 ${data.pending}
 </h2>
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hourglass preview-icon"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/></svg> بانتظار الرد
-</div>
 
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hourglass preview-icon"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/></svg> بانتظار الرد
+
+</div>
+</div>
 </div>
 
 <div class="page-break"></div>
@@ -371,27 +325,7 @@ ${data.pending}
 <div class="guests-page">
 
 <h2>
-<h2 class="section-title">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="#7C5C2E"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    <rect width="8" height="4" x="8" y="2" rx="1"/>
-    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
-    <path d="M12 11h4"/>
-    <path d="M12 16h4"/>
-    <path d="M8 11h.01"/>
-    <path d="M8 16h.01"/>
-  </svg>
-
-  قائمة المعازيم
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7C5C2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>     <path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/>   </svg>   قائمة المعازيم
 </h2>
 <table>
 
