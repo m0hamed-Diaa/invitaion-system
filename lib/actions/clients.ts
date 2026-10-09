@@ -220,10 +220,6 @@ export async function deleteClientAction(
             )
         );
 
-        console.log(
-            "Files to delete:",
-            paths
-        );
 
         if (paths.length > 0) {
 
@@ -278,10 +274,6 @@ export async function deleteClientAction(
         };
 
     } catch (error) {
-        console.error(
-            "Delete Client Error:",
-            error
-        );
 
         return {
             success: false,
