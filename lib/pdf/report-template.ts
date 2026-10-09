@@ -42,7 +42,7 @@ color:#222;
 
 .header{
 text-align:center;
-margin-bottom:35px;
+margin-bottom:10px;
 }
 
 .header h1{
@@ -61,8 +61,8 @@ color:#64748b;
 display:grid;
 grid-template-columns:repeat(2,1fr);
 gap:15px;
-margin-bottom:30px;
-margin-top:20px;
+margin-bottom:10px;
+margin-top:10px;
 }
 
 .card{
@@ -88,7 +88,7 @@ margin-bottom:5px;
 display:grid;
 grid-template-columns:repeat(4,1fr);
 gap:15px;
-margin-bottom:35px;
+margin-bottom:10px;
 }
 
 .stat{
@@ -107,7 +107,7 @@ margin-bottom:10px;
 table{
 width:100%;
 border-collapse:collapse;
-margin-top:20px;
+margin-top:10px;
 }
 
 thead{
@@ -127,7 +127,7 @@ background:#f8fafc;
 }
 
 .footer{
-margin-top:40px;
+margin-top:10px;
 text-align:center;
 font-size:14px;
 color:#888;
@@ -154,7 +154,7 @@ color:#888;
     justify-content: space-between;
     align-items: flex-start;
     gap: 50px;
-    margin-bottom: 150px;
+    margin-bottom: 40px;
 }
 
 .logo-img {
@@ -196,7 +196,7 @@ h3{
     text-align:center;
     font-size:22px;
     color:#475569;
-    margin-bottom:30px;
+    margin-bottom:10px;
 }
 
 
@@ -206,7 +206,6 @@ h3{
 
 <body>
 <div class="first-page">
-
 
 <div class="header-images">
 
@@ -228,17 +227,13 @@ h3{
 
 </div>
 
-
-
 <h1>
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C084FC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-party-popper preview-icon"><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17"/><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"/></svg> تقرير المناسبة
 </h1>
 
-
 <h3>
 ${data.title}
 </h3>
-
 
 
 <div class="info">
@@ -259,9 +254,7 @@ ${data.client.name}
 ${new Date().toLocaleDateString("ar-EG")}
 </div>
 
-
 </div>
-
 
 
 <div class="stats">
@@ -316,7 +309,7 @@ ${data.pending}
 <div class="guests-page">
 
 <h2>
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7C5C2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>     <path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/>   </svg>   قائمة المعازيم
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7C5C2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>     <path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg>   قائمة المعازيم
 </h2>
 <table>
 
@@ -361,9 +354,17 @@ ${guest.status === "pending"
 
 <td>${guest.invitation_sent ? "تم الأرسال" : "لم ترسل"}</td>
 
-<td>${guest.attend_confirmation ? "✔" : " "}</td>
+<td>${guest.attend_confirmation ? `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check preview-icon"><path d="M20 6 9 17l-5-5"/></svg>` : " "}</td>
 <td>${guest.method ? guest.method === "qr" ? "QR" : "يدوى" : " "}</td>
-<td>${guest.scanned_at ? new Date(guest.scanned_at).toLocaleString("ar-EG") : " "}</td>
+<td>${guest.scanned_at ? new Date(guest.scanned_at).toLocaleString("ar-EG", {
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+  hour12: true,
+}) : " "}</td>
 </tr>
 
 `).join("")}
