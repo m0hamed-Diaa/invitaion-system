@@ -89,6 +89,7 @@ export default function GuestTable({
                         <TableCell>{guest.attend_confirmation ? "✔" : "-"}</TableCell>
                         <TableCell>{guest.method ? guest.method === "qr" ? "QR" : "يدوى" : "-"}</TableCell>
                         <TableCell>{guest.scanned_at ? new Date(guest.scanned_at).toLocaleString("ar-EG", {
+                            timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
                             year: "numeric",
                             month: "2-digit",
                             day: "2-digit",

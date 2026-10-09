@@ -153,6 +153,7 @@ export async function checkInGuest(
     const now =
         new Date().toISOString();
 
+
     const {
         data: updatedGuest,
         error: updateError,
